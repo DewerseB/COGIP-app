@@ -9,6 +9,8 @@
     <?php
         require './view/header.php';
 
+        echo $message;
+
         require './view/pages/' . $route->getPath();
 
         require './view/footer.php';
