@@ -7,11 +7,11 @@
 </head>
 <body>
     <?php
-        require './view/header';
+        require './view/header.php';
 
-        require './view/' . $page;
+        require './view/pages/' . $route->getPath();
 
-        require './view/footer';
+        require './view/footer.php';
     ?>
 </body>
 </html>
