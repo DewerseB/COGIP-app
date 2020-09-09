@@ -12,8 +12,5 @@
 
             return $realPath;
         }
-
-        // public function getPath() {
-        //     return $this->path . '.php';
-        // }
+        
     }

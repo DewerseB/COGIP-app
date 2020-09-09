@@ -22,8 +22,6 @@
                 $this->path = 'dashboard';
             }
 
-            //$usertype = 'guest';
-
             if (!Auth::isLogged() && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['submit'])) {
                 if ($_POST['submit'] === 'login') {
                     try {
@@ -36,7 +34,6 @@
                     }
                 }
             }
-            //return $usertype;
         }
 
         private function getData() {

@@ -5,8 +5,8 @@
         <a href="/COGIP-app/companies/list"><button type="button">Sociétés</button></a>
         <a href="/COGIP-app/contacts/list"><button type="button">Contacts</button></a>
         <?php
-            if (isset($_SESSION['username'])) {
-                echo '<form action="" method="POST"><input type="submit" name="submit" value="logout"></form>';
+            if (Auth::isLogged()) {
+                echo '<form action="" method="POST"><button type="submit" name="submit" value="logout">Deconnexion</button></form>';
             } else {
                 echo '<a href="/COGIP-app/login"><button type="button">Connexion</button></a>';
             }
