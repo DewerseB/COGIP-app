@@ -1,0 +1,19 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header, footer {
+    display: flex;
+    justify-content: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+div.nav {
+    display: flex;
+    justify-content: space-evenly;
+}

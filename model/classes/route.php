@@ -1,22 +1,19 @@
 <?php
 
     class Route {
-        function __construct($path) {
-            $this->path = $this->getRealPath($path);
-        }
 
-        private function getRealPath($path) {
+        public static function getRealPath($path) {
 
 
 
-            $realPath = $path;
+            $realPath = $path . '.php';
 
 
 
             return $realPath;
         }
 
-        public function getPath() {
-            return $this->path . '.php';
-        }
+        // public function getPath() {
+        //     return $this->path . '.php';
+        // }
     }
