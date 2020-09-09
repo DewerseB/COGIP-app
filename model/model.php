@@ -6,7 +6,7 @@
 
     class Model {
         function __construct($path) {
-            $this->message = '';
+            $this->message = "";
             $this->path = $path;
             $this->handleSession();
             $this->realPath = Route::getRealPath($this->path);
@@ -37,6 +37,9 @@
         }
 
         private function getData() {
+
+
+            
             return [];
         }
     }
