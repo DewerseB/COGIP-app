@@ -10,7 +10,6 @@
 
             require './model/config/sql-auth.php';
 
-            //$selectPass = 'SELECT password FROM users WHERE username = ?';
             $selectPass = 'SELECT users.password, usertypes.usertype FROM users INNER JOIN usertypes ON users.usertype_id = usertypes.usertype_id AND username = ?';
             $prepPassReq = $pdo->prepare($selectPass);
             $prepPassReq->execute([$username]);
