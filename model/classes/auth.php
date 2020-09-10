@@ -10,13 +10,13 @@
 
             require './model/config/sql-auth.php';
 
-            //$selectPass = 'SELECT password FROM users WHERE username = ?';
             $selectPass = 'SELECT users.password, usertypes.usertype FROM users INNER JOIN usertypes ON users.usertype_id = usertypes.usertype_id AND username = ?';
             $prepPassReq = $pdo->prepare($selectPass);
             $prepPassReq->execute([$username]);
 
             if ($prepPassReq) {
                 $response = $prepPassReq->fetch();
+                $prepPassReq = NULL;
                 if ($response) {
                     if (password_verify($password, $response['password'])) {
                         $_SESSION['username'] = $username;
@@ -27,9 +27,9 @@
                 } else {
                     throw new Exception("Nom d'utilisateur invalide");
                 }
+            } else {
+                $prepPassReq = NULL;
             }
-
-            $prepPassReq = NULL;
         }
 
         public static function logout() {
