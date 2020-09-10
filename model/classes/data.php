@@ -3,14 +3,14 @@
 class Data
 {
 
-    public static function Read($table, $limit = NULL)
+    public static function Read($table, $limit = -1)
     {
 
         require './model/config/sql-data.php';
 
-        $getData = $pdo->prepare("SELECT * FROM $table LIMIT $limit");
+        $getData = ($limit > 0) ? $pdo->prepare("SELECT * FROM $table LIMIT $limit") : $pdo->prepare("SELECT * FROM $table");
         $getData->execute();
-        $data = $getData->fetchAll();
+        $data = $getData->fetchAll(PDO::FETCH_ASSOC);
 
         return $data;  //renvoi le tableau de données que getData() renverra au controleur pour la vue
     }

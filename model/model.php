@@ -11,7 +11,7 @@
             $this->handleSession();
             $this->viewPath = Route::getViewPath($this->path);
             $this->dataPath = Route::getDataPath($this->viewPath);
-            //$this->data = $this->getData($this->dataPath);
+            $this->data = $this->getData($this->dataPath);
         }
 
         private function handleSession()
@@ -48,22 +48,22 @@
         if (count($dataPath) == 1 && $dataPath[0] == 'dashboard') {
             $data = array();
 
-            $company = data::Read("company", 5);
-            $invoices = data::Read("invoices", 5);
-            $contacts = data::Read("contacts", 5);
+            $company = Data::Read("company", 5);
+            $invoices = Data::Read("invoices", 5);
+            $contacts = Data::Read("contacts", 5);
 
             array_push($data, $company, $invoices, $contacts);
             return $data;
         } else {
 
             if ($dataPath[0] == 'invoices' && $dataPath[1] == 'list') {
-                return $invoices = data::Read("invoices",100);
+                return $invoices = Data::Read("invoices");
             }
             if ($dataPath[0] == 'companies' && $dataPath[1] == 'list') {
-                return $invoices = data::Read("company", 100);
+                return $invoices = Data::Read("company");
             }
             if ($dataPath[0] == 'contacts' && $dataPath[1] == 'list') {
-                return $invoices = data::Read("contacts", 100);
+                return $invoices = Data::Read("contacts");
             }
     
         } 
