@@ -9,8 +9,8 @@
             $this->message = "";
             $this->path = $path;
             $this->handleSession();
-            $this->realPath = Route::getRealPath($this->path);
-            $this->dataPath = explode('/', str_replace('.php', '', $this->realPath));
+            $this->viewPath = Route::getViewPath($this->path);
+            $this->dataPath = Route::getDataPath($this->viewPath);
             //$this->data = $this->getData($this->dataPath);
         }
 

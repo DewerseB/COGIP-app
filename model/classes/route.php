@@ -2,15 +2,26 @@
 
     class Route {
 
-        public static function getRealPath($path) {
+        public static function getViewPath($path) {
+            // $path est une string
+            // ex: 'dashboard', 'invoices/list', 'login', 'companies/add'
 
 
 
-            $realPath = $path . '.php';
+            $viewPath = $path . '.php';
 
 
 
-            return $realPath;
+            return $viewPath;
         }
         
+        public static function getDataPath($path) {
+
+
+
+            $dataPath = explode('/', str_replace('.php', '', $path));
+
+
+            return $dataPath;
+        }
     }
