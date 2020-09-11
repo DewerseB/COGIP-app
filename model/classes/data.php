@@ -3,7 +3,7 @@
 class Data
 {
 
-    public static function Read($table, $limit = -1)
+    public static function read($table, $limit = -1)
     {
 
         require './model/config/sql-data.php';

@@ -7,15 +7,14 @@
     class Model {
         function __construct($path) {
             $this->message = "";
-            $this->path = $path;
+            $this->path = Route::checkPath($path, $this->message);
             $this->handleSession();
             $this->viewPath = Route::getViewPath($this->path);
-            $this->dataPath = Route::getDataPath($this->viewPath);
+            $this->dataPath = Route::getDataPath($this->path);
             $this->data = $this->getData($this->dataPath);
         }
 
-        private function handleSession()
-        {
+        private function handleSession() {
             session_start();
 
             if (Auth::isLogged() && isset($_POST['submit']) && $_POST['submit'] === 'logout') {
@@ -38,8 +37,7 @@
             }
         }
 
-        private function getData($dataPath)
-        {
+        private function getData($dataPath) {
         // $dataPath est un tableau contenant le résultat de l'explode sur l'url
         // ex: ['companies', 'list']  ['dashboard']  ['invoices', 'add']
         // Si il ne contient qu'un élément, soit c'est le login et getData ne fait rien, sinon c'est le dashboard qui doit charger 5 lignes de chaque table
@@ -48,22 +46,22 @@
         if (count($dataPath) == 1 && $dataPath[0] == 'dashboard') {
             $data = array();
 
-            $company = Data::Read("company", 5);
-            $invoices = Data::Read("invoices", 5);
-            $contacts = Data::Read("contacts", 5);
+            $company = Data::read("company", 5);
+            $invoices = Data::read("invoices", 5);
+            $contacts = Data::read("contacts", 5);
 
             array_push($data, $company, $invoices, $contacts);
             return $data;
         } else {
 
             if ($dataPath[0] == 'invoices' && $dataPath[1] == 'list') {
-                return $invoices = Data::Read("invoices");
+                return $invoices = Data::read("invoices");
             }
             if ($dataPath[0] == 'companies' && $dataPath[1] == 'list') {
-                return $invoices = Data::Read("company");
+                return $invoices = Data::read("company");
             }
             if ($dataPath[0] == 'contacts' && $dataPath[1] == 'list') {
-                return $invoices = Data::Read("contacts");
+                return $invoices = Data::read("contacts");
             }
     
         } 
