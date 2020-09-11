@@ -1,5 +1,4 @@
 <h1>COGIP : Listing des factures</h1>
-<<<<<<< HEAD
 <table>
     <th>#ID</th>
     <th>Numéro de facture</th>
@@ -25,6 +24,3 @@
        }
     ?>
 </table>   
-=======
-
->>>>>>> master
