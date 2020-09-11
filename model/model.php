@@ -9,7 +9,7 @@ class Model
     function __construct($path)
     {
         $this->message = "";
-        $this->path = Route::checkPath($path);
+        $this->path = Route::checkPath($path, $this->message);
         $this->handleSession();
         $this->viewPath = Route::getViewPath($this->path);
         $this->dataPath = Route::getDataPath($this->viewPath);

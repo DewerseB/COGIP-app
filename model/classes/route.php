@@ -59,7 +59,7 @@
 
             $explodedPath = explode('/', $path);
 
-            $viewPath = (count($explodedPath) !== 3) ? $path . '.php' : $explodedPath[0] . $explodedPath[1] . '.php';
+            $viewPath = (count($explodedPath) !== 3) ? $path . '.php' : $explodedPath[0] . '/' . $explodedPath[1] . '.php';
 
             return $viewPath;
         }
