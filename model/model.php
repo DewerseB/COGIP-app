@@ -11,9 +11,9 @@ class Model
         $this->message = "";
         $this->path = Route::checkPath($path, $this->message);
         $this->handleSession();
-        $this->viewPath = Route::getViewPath($this->path);
-        $this->dataPath = Route::getDataPath($this->viewPath);
+        $this->dataPath = Route::getDataPath($this->path);
         $this->data = $this->getData($this->dataPath);
+        $this->viewPath = Route::getViewPath($this->path);
     }
 
     private function handleSession()
@@ -42,73 +42,117 @@ class Model
 
     private function getData($dataPath)
     {
-        if (count($dataPath) == 1 && $dataPath[0] == 'dashboard') {
+        $data = array();
 
-            define("NB_MAX_OF_RECORD", 5);
+        switch (count($dataPath)) {
 
-            $data = array();
-            $companies = Data::read("companies", "list", NB_MAX_OF_RECORD);
-            $invoices = Data::read("companies", "list", NB_MAX_OF_RECORD);
-            $contacts = Data::read("companies", "list", NB_MAX_OF_RECORD);
-            array_push($data, $companies, $invoices, $contacts);
+            case 1:
+                if ($dataPath[0] == 'dashboard') {
+                    define("NB_MAX_OF_RECORD", 5);
 
-            return $data;
+                    
+                    $companies = Data::read("companies", "list", NB_MAX_OF_RECORD);
+                    $invoices = Data::read("companies", "list", NB_MAX_OF_RECORD);
+                    $contacts = Data::read("companies", "list", NB_MAX_OF_RECORD);
+                    array_push($data, $companies, $invoices, $contacts);
+                }
+            break;
+            case 2:
+                if ($dataPath[1] == 'list') {
+                    $data = Data::read($dataPath[0], $dataPath[1]);
+                }
+            break;
+            case 3:
+                if ($dataPath[1] == 'details') {
+                    try {
+                        $data0 = Data::read($dataPath[0], $dataPath[1], 0, $dataPath[2]);
+                        switch ($dataPath[0]) {
+                            case 'invoices':
+                                $data1 = Data::read('companies', 'details', 0, $data0[0]['company_id']);
+                                $data2 = Data::read('contacts', 'details', 0, $data0[0]['contact_id']);
+                                array_push($data, $data0, $data1, $data2);
+                            break;
+                            case 'companies':
+                                $data1 = Data::read('invoices', 'details', 0, $data0[0]['company_id']);
+                                $data2 = Data::read('contacts', 'details', 0, $data0[0]['company_id']);
+                                array_push($data, $data0, $data1, $data2);
+                            break;
+                            case 'contacts':
+                                $data1 = Data::read('invoices', 'details', 0, $data0[0]['contact_id']);
+                                $data2 = Data::read('companies', 'details', 0, $data0[0]['company_id']);
+                                array_push($data, $data0, $data1, $data2);
+                            break;
+                        }
+                    } catch (Exception $e) {
+                        $this->message = $e->getMessage();
+                        $this->path = $dataPath[0] . '/list';
+                        $data = Data::read($dataPath[0], 'list');
+                    }
+                }
+            break;
+            default:
+
+            break;
         }
 
-        if (count($dataPath) == 2 && $dataPath[1] == 'list') {
+        return $data;
 
-            define("NB_MAX_OF_RECORD", -1); // -1 means unlimited
 
-            switch ($dataPath[0]) {
-                case 'invoices':
-                    return Data::read($dataPath[0], $dataPath[1], NB_MAX_OF_RECORD,);
-                case 'companies':
-                    return Data::read($dataPath[0], $dataPath[1], NB_MAX_OF_RECORD,);
-                case 'contacts':
-                    return Data::read($dataPath[0], $dataPath[1], NB_MAX_OF_RECORD,);
-            }
-        }
 
-        if (count($dataPath) == 3 && $dataPath[1] == 'details') {
+        // if (count($dataPath) == 1 && $dataPath[0] == 'dashboard') {
 
-            define("NB_MAX_OF_RECORD", -1);
-            define("ID", $dataPath[2]);
+        //     define("NB_MAX_OF_RECORD", 5);
 
-            switch ($dataPath[0]) {
-                case 'invoices':
-                    return Data::read($dataPath[0], $dataPath[1], NB_MAX_OF_RECORD, ID);
-                case 'companies':
-                    return Data::read($dataPath[0], $dataPath[1], NB_MAX_OF_RECORD, ID);
-                case 'contacts':
-                    return Data::read($dataPath[0], $dataPath[1],  NB_MAX_OF_RECORD, ID);
-            }
-        }
+        //     $data = array();
+        //     $companies = Data::read("companies", "list", NB_MAX_OF_RECORD);
+        //     $invoices = Data::read("companies", "list", NB_MAX_OF_RECORD);
+        //     $contacts = Data::read("companies", "list", NB_MAX_OF_RECORD);
+        //     array_push($data, $companies, $invoices, $contacts);
 
-        if (count($dataPath) == 3 && $dataPath[1] == 'add') {
+        //     return $data;
+        // }
 
-            define("NB_MAX_OF_RECORD", -1);
+        // if (count($dataPath) == 2 && $dataPath[1] == 'list') {
 
-            switch ($dataPath[0]) {
-                case 'invoices':
-                    return Data::create($dataPath[0], NB_MAX_OF_RECORD, $dataPath[1]);
-                case 'companies':
-                    return Data::create($dataPath[0], NB_MAX_OF_RECORD, $dataPath[1]);
-                case 'contacts':
-                    return Data::create($dataPath[0], NB_MAX_OF_RECORD,  $dataPath[1]);
-            }
-        }
+        //     return Data::read($dataPath[0], $dataPath[1]);
+        // }
 
-        if (count($dataPath) == 3 && $dataPath[1] == 'delete') {
-            switch ($dataPath[0]) {
-                case 'invoices':
-                    return Data::delete($dataPath[0], NB_MAX_OF_RECORD, $dataPath[1]);
-                case 'companies':
-                    return Data::delete($dataPath[0], NB_MAX_OF_RECORD, $dataPath[1]);
-                case 'contacts':
-                    return Data::delete($dataPath[0], NB_MAX_OF_RECORD,  $dataPath[1]);
-            }
-        }
+        // if (count($dataPath) == 3 && $dataPath[1] == 'details') {
 
-        return [];
+        //     try {
+        //         $data = Data::read($dataPath[0], $dataPath[1], -1, $dataPath[2]);
+        //     } catch (Exception $e) {
+        //         $this->message = $e->getMessage();
+        //         $this->path = $dataPath[0] . '/list';
+        //         $data = Data::read($dataPath[0], 'list');
+        //     }
+        //     return $data;
+        // }
+
+        // if (count($dataPath) == 3 && $dataPath[1] == 'add') {
+
+        //     define("NB_MAX_OF_RECORD", -1);
+
+        //     switch ($dataPath[0]) {
+        //         case 'invoices':
+        //             return Data::create($dataPath[0], NB_MAX_OF_RECORD, $dataPath[1]);
+        //         case 'companies':
+        //             return Data::create($dataPath[0], NB_MAX_OF_RECORD, $dataPath[1]);
+        //         case 'contacts':
+        //             return Data::create($dataPath[0], NB_MAX_OF_RECORD,  $dataPath[1]);
+        //     }
+        // }
+
+        // if (count($dataPath) == 3 && $dataPath[1] == 'delete') {
+        //     switch ($dataPath[0]) {
+        //         case 'invoices':
+        //             return Data::delete($dataPath[0], NB_MAX_OF_RECORD, $dataPath[1]);
+        //         case 'companies':
+        //             return Data::delete($dataPath[0], NB_MAX_OF_RECORD, $dataPath[1]);
+        //         case 'contacts':
+        //             return Data::delete($dataPath[0], NB_MAX_OF_RECORD,  $dataPath[1]);
+        //     }
+        // }
+        // return [];
     }
 }
