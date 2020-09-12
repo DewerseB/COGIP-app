@@ -1,4 +1,6 @@
 <h1>COGIP : Annuaire des contacts</h1>
+<h2><a href="http:/COGIP-app/contacts/add">+ Nouveau contact</a></h2>
+
 <table>
     <th>ID</th>
     <th>Prénom</th>

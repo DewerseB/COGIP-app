@@ -1,4 +1,5 @@
 <h1>COGIP : Annuaire des sociétés</h1>
+<h2><a href="http:/COGIP-app/companies/add">+ Nouvelle société</a></h2>
 <table>
     <th>#ID</th>
     <th>Nom</th>

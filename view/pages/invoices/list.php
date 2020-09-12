@@ -1,4 +1,6 @@
 <h1>COGIP : Listing des factures</h1>
+<h2><a href="http:/COGIP-app/invoices/add">+ Nouvelle facture</a></h2>
+
 <table>
     <th>#ID</th>
     <th>Numéro de facture</th>
