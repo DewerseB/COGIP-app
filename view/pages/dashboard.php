@@ -1,4 +1,12 @@
 <h1>Bienvenue à la COGIP</h1>
+<nav>
+    <ul>
+        <li><h2><a href="http:/COGIP-app/invoices/add">+ Nouvelle facture</a></h2></li>
+        <li><h2><a href="http:/COGIP-app/contacts/add">+ Nouveau contact</a></h2></li>
+        <li><h2><a href="http:/COGIP-app/companies/add">+ Nouvelle société</a></h2></li>
+    </ul>
+</nav>
+
 <h2>Dernières factures:</h2>
 <!-- <table>
     <th>#ID</th>

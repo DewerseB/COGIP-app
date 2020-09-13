@@ -20,7 +20,7 @@
             echo "<td>".$invoice['date'].  "</td>";
             echo "<td>".$invoice['contact_id'].  "</td>";
             echo "<td>".$invoice['company_id'].  "</td>";
-            echo "<td> <button><a href = \"/COGIP-app/invoices/details/$invoice[invoice_id]\">Détails<a></button></td>";
+            echo "<td> <button><a href = \"/COGIP-app/invoices/details.php?id=$invoice[invoice_id]\">Détails<a></button></td>";
             echo "<td> <button><a href = \"/COGIP-app/invoices/update/$invoice[invoice_id]\">Modifier<a></button></td>";
             echo "<td> <button><a href = \"/COGIP-app/invoices/delete/$invoice[invoice_id]\">delete<a></button></td>";
            echo "</tr>";
