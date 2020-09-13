@@ -5,7 +5,7 @@
         require_once './model/model.php';
 
         $model = new Model($path);
-        
+        var_dump($path);
 
         require_once './view/template.php';
 
