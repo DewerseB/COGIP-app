@@ -7,45 +7,51 @@ class Data
     {
         $data = array();
         switch ($case) {
+            
             case "list":
 
                 require './model/config/sql-data.php';
+                switch ($table) {
+                    case "invoices":
+                        $getData = ($limit > 0) ? $pdo->prepare("SELECT invoices.invoice_id, invoices.invoice_number, invoices.date, companies.name, contacts.lastname FROM invoices INNER JOIN companies ON invoices.company_id = companies.company_id INNER JOIN contacts ON invoices.contact_id = contacts.contact_id LIMIT $limit") : $pdo->prepare("SELECT invoices.invoice_id, invoices.invoice_number, invoices.date, companies.name, contacts.lastname FROM invoices INNER JOIN companies ON invoices.company_id = companies.company_id INNER JOIN contacts ON invoices.contact_id = contacts.contact_id");
+                        break;
+                    case "companies":
+                        $getData = ($limit > 0) ? $pdo->prepare("SELECT companies.company_id, companies.name, companies.VAT, companies.country, company_type.company_type FROM companies INNER JOIN company_type ON companies.company_type_id = company_type.company_type_id LIMIT $limit") : $pdo->prepare("SELECT companies.company_id, companies.name, companies.VAT, companies.country, company_type.company_type FROM companies INNER JOIN company_type ON companies.company_type_id = company_type.company_type_id");
+                        break;
+                    case "contacts":
+                        $getData = ($limit > 0) ? $pdo->prepare("SELECT contacts.contact_id, contacts.lastname, contacts.firstname, contacts.email, contacts.phone, companies.name FROM contacts INNER JOIN companies ON contacts.company_id = companies.company_id LIMIT $limit") : $pdo->prepare("SELECT  contacts.contact_id,contacts.lastname, contacts.firstname, contacts.email, contacts.phone, companies.name FROM contacts INNER JOIN companies ON contacts.company_id = companies.company_id");
+                        break;
+                }
 
-                $getData = ($limit > 0) ? $pdo->prepare("SELECT * FROM $table LIMIT $limit") : $pdo->prepare("SELECT * FROM $table");
                 $getData->execute();
                 $data = $getData->fetchAll(PDO::FETCH_ASSOC);
                 $getData = NULL;
+                break;
 
-            break;
             case "details":
-                
+
                 require './model/config/sql-data.php';
 
                 switch ($table) {
                     case "invoices":
-                        $getData =  $pdo->prepare("SELECT * FROM $table where invoice_id=$id");
-                    break;
+                        $getData =  $pdo->prepare("SELECT invoices.invoice_id, invoices.invoice_number, companies.name, companies.VAT ,company_type.company_type,contacts.lastname, contacts.firstname,contacts.phone, contacts.email FROM invoices INNER JOIN companies ON invoices.company_id = companies.company_id INNER JOIN contacts ON invoices.contact_id = contacts.contact_id INNER JOIN company_type ON companies.company_type_id = company_type.company_type_id where invoice_id =$id");
+                        break;
                     case "companies":
-                        $getData =  $pdo->prepare("SELECT * FROM $table where company_id=$id");
-                    break;
+                        $getData =  $pdo->prepare("SELECT invoices.invoice_id, invoices.invoice_number, invoices.date,   companies.name,company_type.company_type, companies.VAT,contacts.lastname, contacts.firstname, contacts.phone, contacts.email  FROM invoices INNER JOIN companies ON invoices.company_id = companies.company_id INNER JOIN contacts ON invoices.contact_id = contacts.contact_id INNER JOIN company_type ON companies.company_type_id = company_type.company_type_id where companies.company_id =$id");
+                        break;
                     case "contacts":
-                        $getData =  $pdo->prepare("SELECT * FROM $table where contact_id=$id");
-                    break;
+                        $getData =  $pdo->prepare("SELECT invoices.invoice_id, invoices.invoice_number, invoices.date, contacts.firstname, contacts.phone , contacts.email,companies.name ,contacts.lastname FROM invoices INNER JOIN companies ON invoices.company_id = companies.company_id INNER JOIN contacts ON invoices.contact_id = contacts.contact_id where contacts.contact_id = $id");
+                        break;
                 }
-                
+
                 $getData->execute();
                 $data = $getData->fetchAll(PDO::FETCH_ASSOC);
                 $getData = NULL;
 
                 if (!$data) {
-                    throw new Exception ("Details introuvables, retour à la liste");
+                    throw new Exception("Details introuvables, retour à la liste");
                 }
-            break;
-                // TO DO get company and his contact for the invoice with INNER JOIN
-                // TO DO get contact and invoice for the company details with INNER JOIN
-                // TO DO get all the invoice for the contact with INNER JOIN
-
-                //$data2 = $getData->fetch(PDO::FETCH_ASSOC);
+                break;
         }
         return $data;
     }
@@ -57,7 +63,7 @@ class Data
     public static function delete($table, $id)
     {
     }
-   
+
 
     public static function update($table, $id, $data)
     {

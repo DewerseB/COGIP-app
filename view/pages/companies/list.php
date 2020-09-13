@@ -17,7 +17,7 @@
             echo "<td>".$company['name'].  "</td>";
             echo "<td>".$company['VAT'].  "</td>";
             echo "<td>".$company['country'].  "</td>";
-            echo "<td>".$company['company_type_id'].  "</td>";
+            echo "<td>".$company['company_type'].  "</td>";
             echo "<td> <button><a href = \"/COGIP-app/companies/update/id\">Modifier<a></button></td>";
             echo "<td> <button><a href = \"/COGIP-app/companies/delete/id\">delete<a></button></td>";
            echo "</tr>";
