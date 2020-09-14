@@ -7,7 +7,7 @@ class Data
     {
         $data = array();
         switch ($case) {
-            
+
             case "list":
 
                 require './model/config/sql-data.php';
@@ -56,11 +56,40 @@ class Data
         return $data;
     }
 
-    public static function create($table, $data)
+    public static function create($table)
     {
+        require './model/config/sql-data.php';
+        switch ($table) {
+            case "invoices":
+                $sql = $pdo->prepare("INSERT INTO $table ( `invoice_number`, `date`, `contact_id`, `company_id`) VALUES (?,?,?,?)");
+                $sql->bindParam(1, $_POST['invoice_number']);
+                $sql->bindParam(2, $_POST['date']);
+                $sql->bindParam(3, $_POST['contact']);
+                $sql->bindParam(4, $_POST['company']);
+                break;
+            case "companies":
+                $sql = $pdo->prepare("INSERT INTO `companies`( `name`, `VAT`, `country`, `company_type_id`) VALUES (?,?,?,?)");
+                $sql->bindParam(1, $_POST['name']);
+                $sql->bindParam(2, $_POST['tva']);
+                $sql->bindParam(3, $_POST['country']);
+                $sql->bindParam(4, $_POST['company_type']);
+                break;
+            case "contacts":
+                $sql = $pdo->prepare("INSERT INTO `contacts`( `firstname`, `lastname`, `email`, `phone`, `company_id`)  VALUES (?,?,?,?,?)");
+                $sql->bindParam(1, $_POST['firstname']);
+                $sql->bindParam(2, $_POST['lastname']);
+                $sql->bindParam(3, $_POST['email']);
+                $sql->bindParam(4, $_POST['phone']);
+                $sql->bindParam(5, $_POST['company']);
+                break;
+        }
+
+        $sql->execute();
+        $sql = NULL;
     }
 
-    public static function delete($table, $id, $primaryKey) {
+    public static function delete($table, $id, $primaryKey)
+    {
         require './model/config/sql-data.php';
         $delRow = "DELETE FROM $table WHERE $primaryKey = ?;";
         $prepDelReq = $pdo->prepare($delRow);
@@ -69,13 +98,45 @@ class Data
         $prepDelReq->execute();
         if ($prepDelReq->rowCount() === 0) {
             $prepDelReq = NULL;
-            throw new Exception ("Id introuvable, retour à la liste");
+            throw new Exception("Id introuvable, retour à la liste");
         }
         $prepDelReq = NULL;
     }
 
 
-    public static function update($table, $id, $data)
+    public static function update($table, $id, $primaryKey)
     {
+
+        require './model/config/sql-data.php';
+        switch ($table) {
+            case "invoices":
+                $sql = $pdo->prepare("UPDATE `invoices` SET `invoice_number`=?,`date`=?,`contact_id`=?,`company_id`=? WHERE $primaryKey = ?");
+                $sql->bindParam(1, $_POST['invoice_number']);
+                $sql->bindParam(2, $_POST['date']);
+                $sql->bindParam(3, $_POST['contact']);
+                $sql->bindParam(4, $_POST['company']);
+                $sql->bindParam(5, $id);
+                break;
+            case "companies":
+                $sql = $pdo->prepare("UPDATE `companies` SET `name`=?,`VAT`=?,`country`=?,`company_type_id`=? WHERE $primaryKey = ?");
+                $sql->bindParam(1, $_POST['name']);
+                $sql->bindParam(2, $_POST['tva']);
+                $sql->bindParam(3, $_POST['country']);
+                $sql->bindParam(4, $_POST['company_type']);
+                $sql->bindParam(5, $id);
+                break;
+            case "contacts":
+                $sql = $pdo->prepare("UPDATE `contacts` SET `firstname`=?,`lastname`=?,`email`=?,`phone`=?,`company_id`=? WHERE $primaryKey = ?");
+                $sql->bindParam(1, $_POST['firstname']);
+                $sql->bindParam(2, $_POST['lastname']);
+                $sql->bindParam(3, $_POST['email']);
+                $sql->bindParam(4, $_POST['phone']);
+                $sql->bindParam(5, $_POST['company']);
+                $sql->bindParam(6, $id);
+                break;
+        }
+
+        $sql->execute();
+        $sql = NULL;
     }
 }
