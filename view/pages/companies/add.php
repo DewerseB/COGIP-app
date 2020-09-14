@@ -1,7 +1,8 @@
 <h1>Ajout nouvelle société</h1>
 <?php
- var_dump($_POST);
- ?>
+    var_dump($_POST);
+    require('./model/db/countries.php');//fetch the variable $countries from countries.php
+?>
 
 <form class="formContent" action="" method="post">
     <div class="form">
@@ -14,7 +15,17 @@
     </div>
     <div class="form">
         <label for="country"><h2>Pays</h2></label>
-        <input type="text" name="country" id="country" value="">
+        <select class="custom-select" name="country" id="country" required>
+            <option selected value="Select your country">Select your country</option>
+            <?php
+                foreach($countries as $country){
+            ?>
+                 <option value="<?php echo strtolower($country); ?>"><?php echo $country;?></option>
+            <?php
+                }
+            ?>
+        </select>
+
     </div>
     <div class="form">
         <label for="company_type"><h2>Type de société</h2></label>
