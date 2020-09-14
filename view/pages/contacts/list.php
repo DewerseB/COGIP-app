@@ -23,19 +23,18 @@
         for ($i=0; $i < count($contactList); $i++) { 
             $contact = $contactList[$i];
             echo "<tr>";
-            echo "<td>".$contact['contact_id'].  "</td>";
-            echo "<td>".$contact['firstname'].  "</td>";
-            echo "<td>".$contact['lastname'].  "</td>";
-            echo "<td>".$contact['email'].  "</td>";
-            echo "<td>".$contact['phone'].  "</td>";
-            echo "<td>".$contact['name'].  "</td>";
-            echo "<td> <a href = \"/COGIP-app/contacts/details/$contact[contact_id]\"><button>Détails</button><a></td>";
-            if (Auth::isLogged() && $_SESSION['usertype'] === 'admin') {
-                echo "<td> <a href = \"/COGIP-app/contacts/update/$contact[contact_id]\"><button>Modifier</button><a></td>";
-                echo "<td> <a href = \"/COGIP-app/contacts/delete/$contact[contact_id]\"><button>Supprimer</button><a></td>";
-            }
+                echo "<td>".$contact['contact_id'].  "</td>";
+                echo "<td>".$contact['firstname'].  "</td>";
+                echo "<td>".$contact['lastname'].  "</td>";
+                echo "<td>".$contact['email'].  "</td>";
+                echo "<td>".$contact['phone'].  "</td>";
+                echo "<td>".$contact['name'].  "</td>";
+                echo "<td> <a href = \"/COGIP-app/contacts/details/$contact[contact_id]\"><button>Détails</button><a></td>";
+                if (Auth::isLogged() && $_SESSION['usertype'] === 'admin') {
+                    echo "<td> <a href = \"/COGIP-app/contacts/update/$contact[contact_id]\"><button>Modifier</button><a></td>";
+                    echo "<td> <a href = \"/COGIP-app/contacts/delete/$contact[contact_id]\"><button>Supprimer</button><a></td>";
+                }
             echo "</tr>";
-
        }
     ?>
 </table>   

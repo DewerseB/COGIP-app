@@ -21,7 +21,6 @@
         $invoicesList = $model->data;
         for ($i=0; $i < count($invoicesList); $i++) { 
             $invoice = $invoicesList[$i];
-            "<form action='COGIP-app/invoices/update/$invoice[invoice_id]' method='post'>";
             echo "<tr>";
             echo "<td>".$invoice['invoice_id'].  "</td>";
             echo "<td>".$invoice['invoice_number'].  "</td>";
@@ -34,8 +33,6 @@
                 echo "<td> <button><a href = \"/COGIP-app/invoices/delete/$invoice[invoice_id]\">Supprimer<a></button></td>";
             }
            echo "</tr>";
-           "</form>"
-
        }
     ?>
 </table>
