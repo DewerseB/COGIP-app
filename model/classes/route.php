@@ -2,7 +2,7 @@
 
     class Route {
 
-        public static function checkPath($path, &$message) {
+        public static function checkPath($path, &$message, &$require) {
 
             $validPath = '';
             $explodedPath = explode('/', $path);
@@ -19,6 +19,7 @@
                 case 2:
                     if (in_array($explodedPath[0], scandir('./view/pages'))) {
                         if (in_array($explodedPath[1] . '.php', scandir('./view/pages/' . $explodedPath[0])) && $explodedPath[1] !== 'details') {
+                            if ($explodedPath[1] === 'add') $require = 'moderator';
                             $validPath = $path;
                         } else {
                             $message = "Page inconnue, retour à la liste";

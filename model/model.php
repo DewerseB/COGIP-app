@@ -9,7 +9,8 @@ class Model
     function __construct($path)
     {
         $this->message = "";
-        $this->path = Route::checkPath($path, $this->message);
+        $this->require = 'guest';
+        $this->path = Route::checkPath($path, $this->message, $this->require);
         $this->handleSession();
         $this->dataPath = Route::getDataPath($this->path);
         $this->data = $this->getData($this->dataPath);
@@ -38,6 +39,13 @@ class Model
                 }
             }
         }
+
+        if ($this->require !== 'guest') {
+            if (!Auth::isLogged())  {
+                $this->message = "Vous devez être connecté, retour au dashboard";
+                $this->path = 'dashboard';
+            }
+        }
     }
 
     private function getData($dataPath)
@@ -50,49 +58,54 @@ class Model
                 if ($dataPath[0] == 'dashboard') {
                     define("NB_MAX_OF_RECORD", 5);
 
-                    
                     $companies = Data::read("companies", "list", NB_MAX_OF_RECORD);
-                    $invoices = Data::read("companies", "list", NB_MAX_OF_RECORD);
-                    $contacts = Data::read("companies", "list", NB_MAX_OF_RECORD);
+                    $invoices = Data::read("invoices", "list", NB_MAX_OF_RECORD);
+                    $contacts = Data::read("contacts", "list", NB_MAX_OF_RECORD);
                     array_push($data, $companies, $invoices, $contacts);
                 }
-            break;
+                break;
             case 2:
                 if ($dataPath[1] == 'list') {
                     $data = Data::read($dataPath[0], $dataPath[1]);
                 }
-            break;
+                break;
             case 3:
                 if ($dataPath[1] == 'details') {
                     try {
-                        $data0 = Data::read($dataPath[0], $dataPath[1], 0, $dataPath[2]);
-                        switch ($dataPath[0]) {
-                            case 'invoices':
-                                $data1 = Data::read('companies', 'details', 0, $data0[0]['company_id']);
-                                $data2 = Data::read('contacts', 'details', 0, $data0[0]['contact_id']);
-                                array_push($data, $data0, $data1, $data2);
-                            break;
-                            case 'companies':
-                                $data1 = Data::read('invoices', 'details', 0, $data0[0]['company_id']);
-                                $data2 = Data::read('contacts', 'details', 0, $data0[0]['company_id']);
-                                array_push($data, $data0, $data1, $data2);
-                            break;
-                            case 'contacts':
-                                $data1 = Data::read('invoices', 'details', 0, $data0[0]['contact_id']);
-                                $data2 = Data::read('companies', 'details', 0, $data0[0]['company_id']);
-                                array_push($data, $data0, $data1, $data2);
-                            break;
-                        }
+                        $data = Data::read($dataPath[0], $dataPath[1], 0, $dataPath[2]); // table/action/id
+                        // switch ($dataPath[0]) {
+                        //     case 'invoices':
+
+                        //         $data = Data::read($dataPath[0], $dataPath[1], 0, $dataPath[2]);
+                        // $data1 = Data::read('companies', 'details', 0, $data0[0]['company_id']);
+                        // $data2 = Data::read('contacts', 'details', 0, $data0[0]['contact_id']);
+                        // array_push($data, $data0, $data1, $data2);
+                        // break;
+                        // case 'companies':
+
+                        // $data = Data::read($dataPath[0], $dataPath[1], 0, $dataPath[2]);
+
+                        // $data1 = Data::read('invoices', 'details', 0, $data0[0]['company_id']);
+                        // $data2 = Data::read('contacts', 'details', 0, $data0[0]['company_id']);
+                        // array_push($data, $data0, $data1, $data2);
+                        // break;
+                        // case 'contacts':
+                        //     $data = Data::read($dataPath[0], $dataPath[1], 0, $dataPath[2]);
+                        // $data1 = Data::read('invoices', 'details', 0, $data0[0]['contact_id']);
+                        // $data2 = Data::read('companies', 'details', 0, $data0[0]['company_id']);
+                        // array_push($data, $data0, $data1, $data2);
+                        //     break;
+                        // }
                     } catch (Exception $e) {
                         $this->message = $e->getMessage();
                         $this->path = $dataPath[0] . '/list';
                         $data = Data::read($dataPath[0], 'list');
                     }
                 }
-            break;
+                break;
             default:
 
-            break;
+                break;
         }
 
         return $data;
