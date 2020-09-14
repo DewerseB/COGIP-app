@@ -60,8 +60,18 @@ class Data
     {
     }
 
-    public static function delete($table, $id)
-    {
+    public static function delete($table, $id, $primaryKey) {
+        require './model/config/sql-data.php';
+        $delRow = "DELETE FROM $table WHERE $primaryKey = ?;";
+        $prepDelReq = $pdo->prepare($delRow);
+        //$prepDelReq->bindValue(1, $table, PDO::PARAM_STR);
+        $prepDelReq->bindValue(1, $id, PDO::PARAM_INT);
+        $prepDelReq->execute();
+        if ($prepDelReq->rowCount() === 0) {
+            $prepDelReq = NULL;
+            throw new Exception ("Id introuvable, retour à la liste");
+        }
+        $prepDelReq = NULL;
     }
 
 

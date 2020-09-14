@@ -14,8 +14,6 @@
             $prepPassReq = $pdo->prepare($selectPass);
             $prepPassReq->execute([$username]);
 
-
-            $username = "Bastien";
             if ($prepPassReq) {
                 $response = $prepPassReq->fetch();
                 $prepPassReq = NULL;

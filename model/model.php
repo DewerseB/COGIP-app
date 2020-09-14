@@ -65,12 +65,12 @@ class Model
                 }
                 break;
             case 2:
-                if ($dataPath[1] == 'list') {
+                if ($dataPath[1] === 'list') {
                     $data = Data::read($dataPath[0], $dataPath[1]);
                 }
                 break;
             case 3:
-                if ($dataPath[1] == 'details') {
+                if ($dataPath[1] === 'details') {
                     try {
                         $data = Data::read($dataPath[0], $dataPath[1], 0, $dataPath[2]); // table/action/id
                         // switch ($dataPath[0]) {
@@ -96,6 +96,30 @@ class Model
                         // array_push($data, $data0, $data1, $data2);
                         //     break;
                         // }
+                    } catch (Exception $e) {
+                        $this->message = $e->getMessage();
+                        $this->path = $dataPath[0] . '/list';
+                        $data = Data::read($dataPath[0], 'list');
+                    }
+                } elseif ($dataPath[1] === 'delete') {
+                    try {
+                        switch ($dataPath[0]) {
+                            case 'invoices':
+                                $primaryKey = 'invoice_id';
+                                $this->message = "Facture supprimée";
+                            break;
+                            case 'companies':
+                                $primaryKey = 'company_id';
+                                $this->message = "Société supprimée";
+                            break;
+                            case 'contacts':
+                                $primaryKey = 'contact_id';
+                                $this->message = "Contact supprimé";
+                            break;
+                        }
+                        Data::delete($dataPath[0], $dataPath[2], $primaryKey);
+                        $this->path = $dataPath[0] . '/list';
+                        $data = Data::read($dataPath[0], 'list');
                     } catch (Exception $e) {
                         $this->message = $e->getMessage();
                         $this->path = $dataPath[0] . '/list';

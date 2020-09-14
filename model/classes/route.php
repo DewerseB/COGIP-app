@@ -32,7 +32,7 @@
                 break;
                 case 3:
                     if (in_array($explodedPath[0], scandir('./view/pages'))) {
-                        if (in_array($explodedPath[1] . '.php', scandir('./view/pages/' . $explodedPath[0])) && $explodedPath[1] === 'details') {
+                        if ((in_array($explodedPath[1] . '.php', scandir('./view/pages/' . $explodedPath[0])) && $explodedPath[1] === 'details') || $explodedPath[1] === 'delete') {
                             if (preg_match('/^[0-9]*$/', $explodedPath[2]) && strlen($explodedPath[2]) !== 0) {
                                 $validPath = $path;
                             } else {

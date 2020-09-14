@@ -15,8 +15,9 @@ a {
     text-decoration: none;
 }
 
-form.login {
+.formContent {
     width: 100%;
+    max-width: 40rem;
     display: flex;
     flex-direction: column;
     padding: 2rem;
