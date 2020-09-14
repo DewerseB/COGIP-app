@@ -44,6 +44,13 @@ class Model
             if (!Auth::isLogged())  {
                 $this->message = "Vous devez être connecté, retour au dashboard";
                 $this->path = 'dashboard';
+            } else {
+                if ($this->require === 'admin') {
+                    if ($_SESSION['usertype'] !== 'admin') {
+                        $this->message = "Vous devez être admin, retour au dashboard";
+                        $this->path = 'dashboard';
+                    }
+                }
             }
         }
     }
