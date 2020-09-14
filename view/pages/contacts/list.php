@@ -23,9 +23,9 @@
             echo "<td>".$contact['email'].  "</td>";
             echo "<td>".$contact['phone'].  "</td>";
             echo "<td>".$contact['company_id'].  "</td>";
-            echo "<td> <button><a href = \"/COGIP-app/contact/details/$contact[contact_id]\">Détails<a></button></td>";
-            echo "<td> <button><a href = \"/COGIP-app/contact/update/$contact[contact_id]\">Modifier<a></button></td>";
-            echo "<td> <button><a href = \"/COGIP-app/contact/delete/$contact[contact_id]\">delete<a></button></td>";
+            echo "<td> <button><a href = \"/COGIP-app/contacts/details/$contact[contact_id]\">Détails<a></button></td>";
+            echo "<td> <button><a href = \"/COGIP-app/contacts/update/$contact[contact_id]\">Modifier<a></button></td>";
+            echo "<td> <button><a href = \"/COGIP-app/contacts/delete/$contact[contact_id]\">delete<a></button></td>";
            echo "</tr>";
 
        }
