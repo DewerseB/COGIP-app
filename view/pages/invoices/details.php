@@ -1,6 +1,5 @@
 <?php
     $datas = $model->data[0];
-    var_dump($datas);
 ?>
 
 <h1>Facture : <?php echo $datas['invoice_number'] ?></h1>

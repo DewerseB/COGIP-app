@@ -1,6 +1,5 @@
 <?php
     $datas = $model->data;
-    var_dump($datas);
     ?>
 <h1>Contact : <?php echo $datas[0]['lastname']. " ". $datas[0]['firstname'] ?> </h1>
 
