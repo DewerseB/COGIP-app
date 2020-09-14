@@ -9,7 +9,8 @@ class Model
     function __construct($path)
     {
         $this->message = "";
-        $this->path = Route::checkPath($path, $this->message);
+        $this->require = 'guest';
+        $this->path = Route::checkPath($path, $this->message, $this->require);
         $this->handleSession();
         $this->dataPath = Route::getDataPath($this->path);
         $this->data = $this->getData($this->dataPath);
@@ -36,6 +37,13 @@ class Model
                     $this->message = $e->getMessage();
                     $this->path = 'login';
                 }
+            }
+        }
+
+        if ($this->require !== 'guest') {
+            if (!Auth::isLogged())  {
+                $this->message = "Vous devez être connecté, retour au dashboard";
+                $this->path = 'dashboard';
             }
         }
     }
