@@ -11,7 +11,7 @@
     <main>
         <?php
             echo $model->message;
-            require './view/pages/' . $model->realPath;
+            require './view/pages/' . $model->viewPath;
         ?>
     </main>
     <?php require './view/footer.php';?>

@@ -41,7 +41,3 @@ Elle affichera une liste de toutes les factures du plus récent au plus vieux. C
 ##### Page de Contacts
 
 Elle affichera une liste de tous les contacts par ordre alphabétique, chaque nom de contact sera un lien vers une nouvelle page, le détaillant, le contenu sera généré avec l'ID du contact choisi.
-
-##### Page des Fournisseurs
-
-Elle affichera une liste de tous les fournisseurs par ordre alphabétique, chaque nom de fournisseur sera un lien vers une nouvelle page, le détaillant, le contenu sera généré avec l'ID du fournisseur choisi.
