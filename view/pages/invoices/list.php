@@ -27,10 +27,10 @@
             echo "<td>".$invoice['date'].  "</td>";
             echo "<td>".$invoice['contact_id'].  "</td>";
             echo "<td>".$invoice['company_id'].  "</td>";
-            echo "<td> <button><a href = \"/COGIP-app/invoices/details/$invoice[invoice_id]\">Détails<a></button></td>";
+            echo "<td> <a href = \"/COGIP-app/invoices/details/$invoice[invoice_id]\"><button>Détails</button><a></td>";
             if (Auth::isLogged() && $_SESSION['usertype'] === 'admin') {
-                echo "<td> <button><a href = \"/COGIP-app/invoices/update/$invoice[invoice_id]\">Modifier<a></button></td>";
-                echo "<td> <button><a href = \"/COGIP-app/invoices/delete/$invoice[invoice_id]\">Supprimer<a></button></td>";
+                echo "<td> <a href = \"/COGIP-app/invoices/update/$invoice[invoice_id]\"><button>Modifier</button><a></td>";
+                echo "<td> <a href = \"/COGIP-app/invoices/delete/$invoice[invoice_id]\"><button>Supprimer</button><a></td>";
             }
            echo "</tr>";
 
