@@ -1,11 +1,14 @@
 <h1>Bienvenue à la COGIP</h1>
-<nav>
-    <ul>
-        <li><h2><a href="http:/COGIP-app/invoices/add">+ Nouvelle facture</a></h2></li>
-        <li><h2><a href="http:/COGIP-app/contacts/add">+ Nouveau contact</a></h2></li>
-        <li><h2><a href="http:/COGIP-app/companies/add">+ Nouvelle société</a></h2></li>
-    </ul>
-</nav>
+
+<?php
+    if (Auth::isLogged()) {
+        echo '<div class="nav">';
+        echo '<a href="/COGIP-app/invoices/add"><button>+ Nouvelle facture</button></a>';
+        echo '<a href="/COGIP-app/contacts/add"><button>+ Nouveau contact</button></a>';
+        echo '<a href="/COGIP-app/companies/add"><button>+ Nouvelle société</button></a>';
+        echo '</div>';
+    }
+?>
 
 <h2>Dernières factures:</h2>
 <!-- <table>
@@ -27,9 +30,11 @@
             echo "<td>".$invoice['date'].  "</td>";
             echo "<td>".$invoice['contact_id'].  "</td>";
             echo "<td>".$invoice['company_id'].  "</td>";
-            echo "<td> <button><a href = \"/COGIP-app/invoices/details/$invoice[invoice_id]\">Détails<a></button></td>";
-            echo "<td> <button><a href = \"/COGIP-app/invoices/update/$invoice[invoice_id]\">Modifier<a></button></td>";
-            echo "<td> <button><a href = \"/COGIP-app/invoices/delete/$invoice[invoice_id]\">delete<a></button></td>";
+            echo "<td> <a href = \"/COGIP-app/invoices/details/$invoice[invoice_id]\"><button>Détails</button><a></td>";
+            if (Auth::isLogged() && $_SESSION['usertype'] === 'admin') { 
+                echo "<td> <a href = \"/COGIP-app/invoices/update/$invoice[invoice_id]\"><button>Modifier</button><a></td>";
+                echo "<td> <a href = \"/COGIP-app/invoices/delete/$invoice[invoice_id]\"><button>Supprimer</button><a></td>";
+            }
            echo "</tr>";
 
        }
