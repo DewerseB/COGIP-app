@@ -33,7 +33,6 @@
                 echo "<td> <a href = \"/COGIP-app/invoices/delete/$invoice[invoice_id]\"><button>Supprimer</button><a></td>";
             }
            echo "</tr>";
-
        }
     ?>
 </table>
