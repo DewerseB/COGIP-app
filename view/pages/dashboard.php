@@ -89,7 +89,7 @@
             echo "<td>".$company[$i]['name'].  "</td>";
             echo "<td>".$company[$i]['VAT'].  "</td>";
             echo "<td>".$company[$i]['country'].  "</td>";
-            echo "<td>".$company[$i]['company_type_id'].  "</td>";
+            echo "<td>".$company[$i]['company_type'].  "</td>";
            echo "</tr>";
 
        }

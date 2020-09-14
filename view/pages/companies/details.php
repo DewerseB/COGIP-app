@@ -1,16 +1,14 @@
 <?php
     $datas = $model->data;
-    $companyList = $datas[0];
-    $invoiceList = $datas[1];
-    $contactList = $datas[2];
+    $companyInfo = $datas[0];
 ?>
 
-<h1>Société : <?php echo $companyList[0]['name'] ?></h1>
+<h1>Société : <?php echo $companyInfo['name'] ?></h1>
 
 <!-- display company info  -->
 <section class="companyDetails">
-    <h2>Numéro de TVA : <?php echo $companyList[0]['VAT'] ?></h2>
-    <h2>Type : <?php echo $companyList[0]['company_type_id'] ?></h2>
+    <h2>Numéro de TVA : <?php echo $companyInfo['VAT'] ?></h2>
+    <h2>Type : <?php echo $companyInfo['company_type'] ?></h2>
 </section>
 
 <!-- display contacts info related to this company -->
@@ -21,11 +19,17 @@
         <th>Téléphone</th>
         <th>Email</th>
         <?php
-            echo "<tr>";
-            echo "<td>".$contactList[0]['lastname']. $contactList[0]['firstname'] . "</td>";
-            echo "<td>".$contactList[0]['phone'].  "</td>";
-            echo "<td>".$contactList[0]['email'].  "</td>";
-            echo "</tr>";
+        for ($i=0; $i < count($datas); $i++) { 
+            if ($i>0 && $datas[$i]['lastname'] == $datas[$i-1]['lastname'] && $datas[$i]['firstname'] == $datas[$i-1]['firstname']) {
+                continue;
+            }else{
+                echo "<tr>";
+                echo "<td>".$datas[$i]['lastname']. " ". $datas[$i]['firstname'] . "</td>";
+                echo "<td>".$datas[$i]['phone'].  "</td>";
+                echo "<td>".$datas[$i]['email'].  "</td>";
+                echo "</tr>"; 
+            }  
+        }
         ?>
     </table>   
 </section>
@@ -38,11 +42,13 @@
         <th>Date</th>
         <th>Contact</th>
     <?php
-           echo "<tr>";
-            echo "<td>".$invoiceList[0]['invoice_number'].  "</td>";
-            echo "<td>".$invoiceList[0]['date'].  "</td>";
-            echo "<td>".$invoiceList[0]['contact_id'].  "</td>";
-           echo "</tr>";
+     for ($i=0; $i < count($datas); $i++) {    
+        echo "<tr>";
+        echo "<td>".$datas[$i]['invoice_number'].  "</td>";
+        echo "<td>".$datas[$i]['date'].  "</td>";
+        echo "<td>".$datas[$i]['email'] ."</td>";
+        echo "</tr>";
+     }
     ?>
 </table> 
 
