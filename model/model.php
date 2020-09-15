@@ -153,32 +153,35 @@ class Model
                         $this->path = $dataPath[0] . '/list';
                         $data = Data::read($dataPath[0], 'list');
                     }
-                } elseif ($dataPath[1] === 'update' && isset($_POST['submit'])) {
-                    try {
-                        switch ($dataPath[0]) {
-                            case 'invoices':
-                                $primaryKey = 'invoice_id';
-                                $this->message = "Facture updatée";
-                                break;
-                            case 'companies':
-                                $primaryKey = 'company_id';
-                                $this->message = "Société updatée";
-                                break;
-                            case 'contacts':
-                                $primaryKey = 'contact_id';
-                                $this->message = "Contact updaté";
-                                break;
+                } elseif ($dataPath[1] === 'update') {
+                    if (isset($_POST['submit'])) {
+                        try {
+                            switch ($dataPath[0]) {
+                                case 'invoices':
+                                    $primaryKey = 'invoice_id';
+                                    $this->message = "Facture modifiée";
+                                    break;
+                                case 'companies':
+                                    $primaryKey = 'company_id';
+                                    $this->message = "Société modifiée";
+                                    break;
+                                case 'contacts':
+                                    $primaryKey = 'contact_id';
+                                    $this->message = "Contact modifié";
+                                    break;
+                            }
+                            Data::update($dataPath[0], $dataPath[2], $primaryKey);
+                            $this->path = $dataPath[0] . '/list';
+                            $data = Data::read($dataPath[0], 'list');
+                        } catch (Exception $e) {
+                            $this->message = $e->getMessage();
+                            $this->path = $dataPath[0] . '/list';
+                            $data = Data::read($dataPath[0], 'list');
                         }
-                        Data::update($dataPath[0], $dataPath[2], $primaryKey);
-                        $this->path = $dataPath[0] . '/list';
-                        $data = Data::read($dataPath[0], 'list');
-                    } catch (Exception $e) {
-                        $this->message = $e->getMessage();
-                        $this->path = $dataPath[0] . '/list';
-                        $data = Data::read($dataPath[0], 'list');
+                    } else {
+                        $data = Data::read($dataPath[0], 'list', 1, $dataPath[2]);
                     }
                 }
-
                 break;
             default:
 

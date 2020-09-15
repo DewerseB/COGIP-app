@@ -1,8 +1,4 @@
 <h1>Ajout nouvelle facture</h1>
-<?php
- var_dump($_POST);
- var_dump(isset($_POST['submit']));
- ?>
 
 <form class="invoiceForm" action="" method="post">
     <section class="invoice_number">

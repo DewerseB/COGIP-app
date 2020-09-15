@@ -1,23 +1,17 @@
-<h1>COGIP : Listing des factures</h1>
-<?php
+<h1>COGIP : Listing des factures <?php
     if (Auth::isLogged()) {
-        echo '<div class="nav">';
-        echo '<a href="/COGIP-app/invoices/add"><button>+ Nouvelle facture</button></a>';
-        echo '</div>';
+        echo '<a href="/COGIP-app/invoices/add"><button class="manage" title="Ajouter une facture"><i class="fas fa-plus-square"></i></button></a>';
     }
-?>
+?></h1>
+
 <table>
-    <th>#ID</th>
+    <th>ID</th>
     <th>Numéro de facture</th>
     <th>Date</th>
     <th>Contact</th>
     <th>Société</th>
-    <th>Détails</th>
+    <th>Gérer</th>
     <?php
-        if (Auth::isLogged() && $_SESSION['usertype'] === 'admin') {
-            echo '<th>Modifier</th>';
-            echo '<th>Supprimer</th>';
-        }
         $invoicesList = $model->data;
         for ($i=0; $i < count($invoicesList); $i++) { 
             $invoice = $invoicesList[$i];
@@ -27,12 +21,12 @@
             echo "<td>".$invoice['date'].  "</td>";
             echo "<td>".$invoice['lastname'].  "</td>";
             echo "<td>".$invoice['name'].  "</td>";
-            echo "<td> <a href = \"/COGIP-app/invoices/details/$invoice[invoice_id]\"><button>Détails</button><a></td>";
-            if (Auth::isLogged() && $_SESSION['usertype'] === 'admin') {
-                echo "<td> <a href = \"/COGIP-app/invoices/update/$invoice[invoice_id]\"><button>Modifier</button><a></td>";
-                echo "<td> <a href = \"/COGIP-app/invoices/delete/$invoice[invoice_id]\"><button>Supprimer</button><a></td>";
+            echo "<td><a href = \"/COGIP-app/invoices/details/$invoice[invoice_id]\"><button class='manage' title='Details'><i class='fas fa-external-link-square-alt'></i></button><a>";
+            if (Auth::isLogged() && $_SESSION['usertype'] === 'admin') { 
+                echo "<a href = \"/COGIP-app/invoices/update/$invoice[invoice_id]\"><button class='manage' title='Modifier'><i class='fas fa-pen-square'></i></button><a>";
+                echo "<a href = \"/COGIP-app/invoices/delete/$invoice[invoice_id]\"><button class='manage' title='Supprimer' onclick='return confirm(\"Voulez-vous vraiment supprimer la facture ?\")'><i class='fas fa-minus-square'></i></button><a>";
             }
-           echo "</tr>";
+            echo "</td></tr>";
        }
     ?>
 </table>
