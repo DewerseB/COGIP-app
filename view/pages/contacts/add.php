@@ -14,7 +14,7 @@
     </section>
     <section class="phone">
         <label for="phone"><h2>Téléphone</h2></label>
-        <input type="number" name="phone" id="phone" value="">
+        <input type="text" name="phone" id="phone" value="">
     </section>
     <section class="email">
         <label for="email"><h2>Email</h2></label>
@@ -22,13 +22,15 @@
     </section>
     <section class="company">
         <label for="company"><h2>Société</h2></label>
-        <select name="company" id="company">
-        <option selected value="Select company">Selectionez une société</option>
+        <input type="text" name="company" id="company" value="">
+
+        <!-- <select name="company" id="company">
+        <option selected value="Select company">Selectionez une société</option> -->
         <!-- <option value="<?php echo $company['name']; ?>"><?php echo $company['name'];?></option> -->  
         </select>
     </section>
     <br><br>
     <section class="submit">
-    <button type="submit" value="submit" id="submit">Submit</button>
+    <button type="submit" value="submit" id="submit" name="submit">Submit</button>
     </section>
 </form>

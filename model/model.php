@@ -41,7 +41,7 @@ class Model
         }
 
         if ($this->require !== 'guest') {
-            if (!Auth::isLogged())  {
+            if (!Auth::isLogged()) {
                 $this->message = "Vous devez être connecté, retour au dashboard";
                 $this->path = 'dashboard';
             } else {
@@ -74,6 +74,27 @@ class Model
             case 2:
                 if ($dataPath[1] === 'list') {
                     $data = Data::read($dataPath[0], $dataPath[1]);
+                } elseif ($dataPath[1] === 'add' && isset($_POST['submit'])) {
+                    try {
+                        switch ($dataPath[0]) {
+                            case 'invoices':
+                                $this->message = "Facture ajoutée";
+                                break;
+                            case 'companies':
+                                $this->message = "Société ajoutée";
+                                break;
+                            case 'contacts':
+                                $this->message = "Contact ajouté";
+                                break;
+                        }
+                        Data::create($dataPath[0]);
+                        $this->path = $dataPath[0] . '/list';
+                        $data = Data::read($dataPath[0], 'list');
+                    } catch (Exception $e) {
+                        $this->message = $e->getMessage();
+                        $this->path = $dataPath[0] . '/list';
+                        $data = Data::read($dataPath[0], 'list');
+                    }
                 }
                 break;
             case 3:
@@ -114,15 +135,15 @@ class Model
                             case 'invoices':
                                 $primaryKey = 'invoice_id';
                                 $this->message = "Facture supprimée";
-                            break;
+                                break;
                             case 'companies':
                                 $primaryKey = 'company_id';
                                 $this->message = "Société supprimée";
-                            break;
+                                break;
                             case 'contacts':
                                 $primaryKey = 'contact_id';
                                 $this->message = "Contact supprimé";
-                            break;
+                                break;
                         }
                         Data::delete($dataPath[0], $dataPath[2], $primaryKey);
                         $this->path = $dataPath[0] . '/list';
@@ -132,7 +153,32 @@ class Model
                         $this->path = $dataPath[0] . '/list';
                         $data = Data::read($dataPath[0], 'list');
                     }
+                } elseif ($dataPath[1] === 'update' && isset($_POST['submit'])) {
+                    try {
+                        switch ($dataPath[0]) {
+                            case 'invoices':
+                                $primaryKey = 'invoice_id';
+                                $this->message = "Facture updatée";
+                                break;
+                            case 'companies':
+                                $primaryKey = 'company_id';
+                                $this->message = "Société updatée";
+                                break;
+                            case 'contacts':
+                                $primaryKey = 'contact_id';
+                                $this->message = "Contact updaté";
+                                break;
+                        }
+                        Data::update($dataPath[0], $dataPath[2], $primaryKey);
+                        $this->path = $dataPath[0] . '/list';
+                        $data = Data::read($dataPath[0], 'list');
+                    } catch (Exception $e) {
+                        $this->message = $e->getMessage();
+                        $this->path = $dataPath[0] . '/list';
+                        $data = Data::read($dataPath[0], 'list');
+                    }
                 }
+
                 break;
             default:
 
