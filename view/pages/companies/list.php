@@ -1,23 +1,16 @@
-<h1>COGIP : Annuaire des sociétés</h1>
-<?php
+<h1>COGIP : Annuaire des sociétés <?php
     if (Auth::isLogged()) {
-        echo '<div class="nav">';
-        echo '<a href="/COGIP-app/companies/add"><button>+ Nouvelle société</button></a>';
-        echo '</div>';
+        echo '<a href="/COGIP-app/companies/add"><button class="manage" title="Ajouter une société"><i class="fas fa-plus-square"></i></button></a>';
     }
-?>
+?></h1>
 <table>
-    <th>#ID</th>
+    <th>ID</th>
     <th>Nom</th>
     <th>Numéro de TVA</th>
     <th>Pays</th>
     <th>type</th>
-    <th>Détails</th>
+    <th>Gérer</th>
     <?php
-        if (Auth::isLogged() && $_SESSION['usertype'] === 'admin') {
-            echo '<th>Modifier</th>';
-            echo '<th>Supprimer</th>';
-        }
         $companyList = $model->data;
         for ($i=0; $i < count($companyList); $i++) { 
             $company = $companyList[$i];
@@ -27,12 +20,12 @@
             echo "<td>".$company['VAT'].  "</td>";
             echo "<td>".$company['country'].  "</td>";
             echo "<td>".$company['company_type'].  "</td>";
-            echo "<td> <a href = \"/COGIP-app/companies/details/$company[company_id]\"><button>Détails</button><a></td>";
+            echo "<td><a href = \"/COGIP-app/companies/details/$company[company_id]\"><button class='manage' title='Details'><i class='fas fa-external-link-square-alt'></i></button><a>";
             if (Auth::isLogged() && $_SESSION['usertype'] === 'admin') {
-                echo "<td> <a href = \"/COGIP-app/companies/update/$company[company_id]\"><button>Modifier</button><a></td>";
-                echo "<td> <a href = \"/COGIP-app/companies/delete/$company[company_id]\"><button>Supprimer</button><a></td>";
+                echo "<a href = \"/COGIP-app/companies/update/$company[company_id]\"><button class='manage' title='Modifier'><i class='fas fa-pen-square'></i></button><a>";
+                echo "<a href = \"/COGIP-app/companies/delete/$company[company_id]\"><button class='manage' title='Supprimer' onclick='return confirm(\"Voulez-vous vraiment supprimer la société ?\")'><i class='fas fa-minus-square'></i></button><a>";
             }
-            echo "</tr>";
+            echo "</td></tr>";
 
        }
     ?>
