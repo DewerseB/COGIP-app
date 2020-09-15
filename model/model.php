@@ -179,7 +179,7 @@ class Model
                             $data = Data::read($dataPath[0], 'list');
                         }
                     } else {
-                        $data = Data::read($dataPath[0], 'list', 1, $dataPath[2]);
+                        $data = Data::read($dataPath[0], 'details', 1, $dataPath[2]);
                     }
                 }
                 break;
