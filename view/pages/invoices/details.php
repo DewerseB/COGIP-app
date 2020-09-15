@@ -2,7 +2,9 @@
     $datas = $model->data[0];
 ?>
 
-<h1>Facture : <?php echo $datas['invoice_number'] ?></h1>
+<h1>Facture : <?php echo $datas['invoice_number'] ?> <br>
+    Date: <?php echo $datas['date'] ?>
+</h1>
 
 <section class="companyInvoiceDetails">
     <h2>Société liée à la facture</h2>
