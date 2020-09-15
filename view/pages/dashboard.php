@@ -4,8 +4,8 @@
     if (Auth::isLogged()) {
         echo '<div class="nav">';
         echo '<a href="/COGIP-app/invoices/add"><button>+ Nouvelle facture</button></a>';
-        echo '<a href="/COGIP-app/contacts/add"><button>+ Nouveau contact</button></a>';
         echo '<a href="/COGIP-app/companies/add"><button>+ Nouvelle société</button></a>';
+        echo '<a href="/COGIP-app/contacts/add"><button>+ Nouveau contact</button></a>';
         echo '</div>';
     }
 ?>
