@@ -15,6 +15,10 @@ a {
     text-decoration: none;
 }
 
+table {
+    background-color: rgb(215, 235, 255);
+}
+
 .formContent {
     width: 100%;
     max-width: 40rem;
@@ -63,13 +67,15 @@ button {
 
 button.manage {
     font-size: 2rem;
-    background: #ffffff;
+    background: rgb(215, 235, 255);
     color: rgb(50, 100, 150);
+    padding: 0;
+    margin: 0.5rem;
 }
 
 button.manage:hover,
 button.manage:focus {
-    color: #ffffff;
+    color: #000000;
 }
 
 button.nav:hover,
