@@ -34,7 +34,7 @@ class Data
 
                 switch ($table) {
                     case "invoices":
-                        $getData =  $pdo->prepare("SELECT invoices.invoice_id, invoices.invoice_number, companies.name, companies.VAT ,company_type.company_type,contacts.lastname, contacts.firstname,contacts.phone, contacts.email FROM invoices INNER JOIN companies ON invoices.company_id = companies.company_id INNER JOIN contacts ON invoices.contact_id = contacts.contact_id INNER JOIN company_type ON companies.company_type_id = company_type.company_type_id where invoice_id =$id");
+                        $getData =  $pdo->prepare("SELECT invoices.invoice_id, invoices.invoice_number, invoices.date, companies.name, companies.VAT ,company_type.company_type,contacts.lastname, contacts.firstname,contacts.phone, contacts.email FROM invoices INNER JOIN companies ON invoices.company_id = companies.company_id INNER JOIN contacts ON invoices.contact_id = contacts.contact_id INNER JOIN company_type ON companies.company_type_id = company_type.company_type_id where invoice_id =$id");
                         break;
                     case "companies":
                         $getData =  $pdo->prepare("SELECT invoices.invoice_id, invoices.invoice_number, invoices.date,   companies.name,company_type.company_type, companies.VAT,contacts.lastname, contacts.firstname, contacts.phone, contacts.email  FROM invoices INNER JOIN companies ON invoices.company_id = companies.company_id INNER JOIN contacts ON invoices.contact_id = contacts.contact_id INNER JOIN company_type ON companies.company_type_id = company_type.company_type_id where companies.company_id =$id");
