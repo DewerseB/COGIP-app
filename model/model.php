@@ -74,26 +74,29 @@ class Model
             case 2:
                 if ($dataPath[1] === 'list') {
                     $data = Data::read($dataPath[0], $dataPath[1]);
-                } elseif ($dataPath[1] === 'add' && isset($_POST['submit'])) {
-                    try {
-                        switch ($dataPath[0]) {
-                            case 'invoices':
-                                $this->message = "Facture ajoutée";
-                                break;
-                            case 'companies':
-                                $this->message = "Société ajoutée";
-                                break;
-                            case 'contacts':
-                                $this->message = "Contact ajouté";
-                                break;
+                } elseif ($dataPath[1] === 'add') {
+                    $data = Data::read($dataPath[0], $dataPath[1]);
+                    if (isset($_POST['submit'])) {
+                        try {
+                            switch ($dataPath[0]) {
+                                case 'invoices':
+                                    $this->message = "Facture ajoutée";
+                                    break;
+                                case 'companies':
+                                    $this->message = "Société ajoutée";
+                                    break;
+                                case 'contacts':
+                                    $this->message = "Contact ajouté";
+                                    break;
+                            }
+                            Data::create($dataPath[0]);
+                            $this->path = $dataPath[0] . '/list';
+                            $data = Data::read($dataPath[0], 'list');
+                        } catch (Exception $e) {
+                            $this->message = $e->getMessage();
+                            $this->path = $dataPath[0] . '/list';
+                            $data = Data::read($dataPath[0], 'list');
                         }
-                        Data::create($dataPath[0]);
-                        $this->path = $dataPath[0] . '/list';
-                        $data = Data::read($dataPath[0], 'list');
-                    } catch (Exception $e) {
-                        $this->message = $e->getMessage();
-                        $this->path = $dataPath[0] . '/list';
-                        $data = Data::read($dataPath[0], 'list');
                     }
                 }
                 break;
@@ -179,7 +182,9 @@ class Model
                             $data = Data::read($dataPath[0], 'list');
                         }
                     } else {
-                        $data = Data::read($dataPath[0], 'details', 1, $dataPath[2]);
+                        $data0 = Data::read($dataPath[0], 'details', 1, $dataPath[2]);
+                        $data1 = Data::read($dataPath[0], $dataPath[1]);
+                        array_push($data, $data0, $data1);
                     }
                 }
                 break;
