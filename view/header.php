@@ -6,6 +6,7 @@
         <a href="/COGIP-app/contacts/list"><button class="nav" type="button">Contacts</button></a>
         <?php
             if (Auth::isLogged()) {
+                if ($_SESSION['usertype'] === 'admin') echo '<a href="/COGIP-app/admin/admin"><button class="nav" type="button">Admin</button></a>';
                 echo '<form action="" method="POST"><button class="nav" type="submit" name="submit" value="logout">Deconnexion</button></form>';
             } else {
                 echo '<a href="/COGIP-app/login"><button class="nav" type="button">Connexion</button></a>';
