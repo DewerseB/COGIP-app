@@ -8,9 +8,9 @@ class Data
         $data = array();
         switch ($case) {
             case "add":
+            case "update":
                 require './model/config/sql-data.php';
                 $getData = $pdo->prepare("SELECT contacts.contact_id,contacts.lastname, contacts.firstname, companies.name, companies.company_id FROM contacts INNER JOIN companies ON contacts.company_id = companies.company_id");
-
                 $getData->execute();
                 $data = $getData->fetchAll(PDO::FETCH_ASSOC);
                 $getData = NULL;
