@@ -41,7 +41,6 @@
                 <option value="<?php echo $contact['contact_id']; ?>"<?php echo ($contact['lastname'] == $invoiceInfo['lastname'] && $contact['firstname'] == $invoiceInfo['firstname'])? "selected":""?>>
                         <?php echo $contact['lastname']. " ". $contact['firstname'];?>
                 </option>    
-                 <!-- <option value="<?php echo $contact['contact_id']; ?>"><?php echo $contact['lastname']. " ". $contact['firstname'];?></option> -->
             <?php
                 }
             ?>
