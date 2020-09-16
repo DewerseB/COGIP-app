@@ -1,12 +1,13 @@
 <?php
-    $datas = $model->data;
+    $invoicesList = $model->data;
+    $contactInfo = $invoicesList[0];
     ?>
-<h1>Contact : <?php echo $datas[0]['lastname']. " ". $datas[0]['firstname'] ?> </h1>
+<h1>Contact : <?php echo $contactInfo['lastname']. " ". $contactInfo['firstname'] ?> </h1>
 
 <section class="contactDetails">
-    <strong> Société : </strong> <?php echo $datas[0]['name']?> <br>
-    <strong> Email : </strong> <?php echo $datas[0]['email']?> <br>
-    <strong> Phone : </strong> <?php echo $datas[0]['phone']?> <br>
+    <strong> Société : </strong> <?php echo $contactInfo['name']?> <br>
+    <strong> Email : </strong> <?php echo $contactInfo['email']?> <br>
+    <strong> Phone : </strong> <?php echo $contactInfo['phone']?> <br>
 </section>
 
 <section class="invoiceContactDétails">
@@ -15,10 +16,10 @@
         <th>Numéro de facture</th>
         <th>Date</th>
         <?php
-        for ($i=0; $i < count($datas); $i++) {    
+        foreach ($invoicesList as $invoice) {    
             echo "<tr>";
-                echo "<td>".$datas[$i]['invoice_number']."</td>";
-                echo "<td>".$datas[$i]['date']."</td>";
+                echo "<td>".$invoice['invoice_number']."</td>";
+                echo "<td>".$invoice['date']."</td>";
             echo "</tr>";
         }
         ?>
