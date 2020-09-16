@@ -17,7 +17,7 @@ class Data
                 $getData = $pdo->prepare("SELECT company_id,name from companies");
                 $getData->execute();
                 $data1 = $getData->fetchAll(PDO::FETCH_ASSOC);
-                
+
                 array_push($data, $data0, $data1);
                 $getData = NULL;
                 break;
@@ -49,8 +49,25 @@ class Data
                     case "invoices":
                         $getData =  $pdo->prepare("SELECT invoices.invoice_id, invoices.invoice_number, invoices.date, companies.name, companies.VAT ,company_type.company_type,contacts.lastname, contacts.firstname,contacts.phone, contacts.email FROM invoices INNER JOIN companies ON invoices.company_id = companies.company_id INNER JOIN contacts ON invoices.contact_id = contacts.contact_id INNER JOIN company_type ON companies.company_type_id = company_type.company_type_id where invoice_id =$id");
                         break;
+
                     case "companies":
-                        $getData =  $pdo->prepare("SELECT invoices.invoice_id, invoices.invoice_number, invoices.date,   companies.name,company_type.company_type, companies.VAT,contacts.lastname, companies.country,contacts.firstname, contacts.phone, contacts.email  FROM invoices INNER JOIN companies ON invoices.company_id = companies.company_id INNER JOIN contacts ON invoices.contact_id = contacts.contact_id INNER JOIN company_type ON companies.company_type_id = company_type.company_type_id where companies.company_id =$id");
+                        $checkInvoiceSQL = $pdo->prepare("SELECT invoices.invoice_id, invoices.invoice_number, invoices.date FROM invoices INNER JOIN companies ON invoices.company_id = companies.company_id INNER JOIN contacts ON invoices.contact_id = contacts.contact_id INNER JOIN company_type ON companies.company_type_id = company_type.company_type_id where companies.company_id = $id");
+                        $checkInvoiceSQL->execute();
+                        $checkInvoiceData = $checkInvoiceSQL->fetchAll(PDO::FETCH_ASSOC);
+
+                        $checkContactsSQL = $pdo->prepare("SELECT contact_id, firstname, lastname, email, phone from contacts where company_id = $id");
+                        $checkContactsSQL->execute();
+                        $checkContactsData = $checkContactsSQL->fetchAll(PDO::FETCH_ASSOC);
+
+                        if ($checkInvoiceData && $checkContactsData) {
+                            $getData =  $pdo->prepare("SELECT invoices.invoice_id, invoices.invoice_number, invoices.date,   companies.name,company_type.company_type, companies.VAT,contacts.lastname, companies.country,contacts.firstname, contacts.phone, contacts.email  FROM invoices INNER JOIN companies ON invoices.company_id = companies.company_id INNER JOIN contacts ON invoices.contact_id = contacts.contact_id INNER JOIN company_type ON companies.company_type_id = company_type.company_type_id where companies.company_id =$id");
+                        } elseif ($checkContactsData && !$checkInvoiceData) {
+                            $getData =  $pdo->prepare("SELECT companies.name,company_type.company_type, companies.VAT,contacts.lastname, companies.country,contacts.firstname, contacts.phone, contacts.email  FROM invoices INNER JOIN companies ON invoices.company_id = companies.company_id  INNER JOIN contacts ON invoices.contact_id = contacts.contact_id INNER JOIN company_type ON companies.company_type_id = company_type.company_type_id where companies.company_id =$id");
+                        } elseif (!$checkContactsData && $checkInvoiceData) {
+                            $getData =  $pdo->prepare("SELECT invoices.invoice_id, invoices.invoice_number, invoices.date,   companies.name,company_type.company_type, companies.VAT, companies.country FROM invoices INNER JOIN companies ON invoices.company_id = companies.company_id  INNER JOIN company_type ON companies.company_type_id = company_type.company_type_id where companies.company_id =$id");
+                        } else {
+                            $getData =  $pdo->prepare("SELECT companies.company_id, companies.name, companies.VAT, companies.country, company_type.company_type from companies INNER JOIN company_type ON companies.company_type_id = company_type.company_type_id  where company_id = $id");
+                        }
                         break;
                     case "contacts":
                         $getData =  $pdo->prepare("SELECT invoices.invoice_id, invoices.invoice_number, invoices.date, contacts.firstname, contacts.phone , contacts.email,companies.name ,contacts.lastname FROM invoices INNER JOIN companies ON invoices.company_id = companies.company_id INNER JOIN contacts ON invoices.contact_id = contacts.contact_id where contacts.contact_id = $id");
