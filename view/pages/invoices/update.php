@@ -1,6 +1,9 @@
 <?php
     $invoiceInfo = $model->data[0];
-    var_dump($invoiceInfo)
+    $contactList = $model->data[1][0];
+    $companyList = $model->data[1][1];
+
+    // var_dump($companyList)
  ?>
 <h1>Modifier la facture :</h1>
 
@@ -9,28 +12,41 @@
         <label for="invoice_number"><h2>Numéro de facture</h2></label>
         <input type="text" name="invoice_number" id="invoice_number" value="<?php echo $invoiceInfo[0]['invoice_number'] ?>">
     </section>
+
     <section class="date">
         <label for="date"><h2>Date</h2></label>
         <input type="date" name="date" id="date" value="<?php echo $invoiceInfo[0]['date'] ?>">
     </section>
+
     <section class="company">
         <label for="company"><h2>Société</h2></label>
-        <input type="text" name="company" value="<?php echo $invoiceInfo[0]['name'] ?>">
-        <!-- <select name="company" id="company"> -->
-        <!-- <option selected value="Select company">Selectionez une société</option> -->
-        <!-- <option value="<?php echo $company['name']; ?>"><?php echo $company['name'];?></option> -->  
+        <select class="custom-select" name="company" id="company" required>
+            <option selected value="Selectionnez your company">Selectionnez la société</option>
+            <?php
+                foreach($companyList as $company){
+            ?>
+                 <option value="<?php echo $company['company_id']; ?>"><?php echo $company['name'];?></option>
+            <?php
+                }
+            ?>
         </select>
     </section>
+
     <section class="contact">
         <label for="contact"><h2>Personne de contact pour la facture</h2></label>
-        <input type="text" name="contact" value="<?php echo $invoiceInfo[0]['lastname'] ?>">
-        <!-- <select name="contact" id="contact">
-        <option selected value="Select contact">Selectionez un contact</option> -->
-        <!-- <option value="<?php echo $contact['name']; ?>"><?php echo $contact['name'];?></option> -->  
+        <select class="custom-select" name="contact" id="contact" required>
+            <option selected value="Selectionnez your contact">Selectionnez le contact</option>
+            <?php
+                foreach($contactList as $contact){
+            ?>
+                 <option value="<?php echo $contact['contact_id']; ?>"><?php echo $contact['lastname']. " ". $contact['firstname'];?></option>
+            <?php
+                }
+            ?>
         </select>
     </section>
-    <br><br>
+
     <section class="submit">
-    <button type="submit" value="submit" id="submit" name="submit">Submit</button>
+        <button type="submit" value="submit" id="submit" name="submit">Submit</button>
     </section>
 </form>

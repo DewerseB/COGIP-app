@@ -1,3 +1,7 @@
+<?php
+    $companyList = $model->data[1];
+    var_dump($companyList);
+    ?>
 <h1>Ajout nouveau contact</h1>
 
 <form class="contactForm" action="" method="post">
@@ -19,14 +23,18 @@
     </section>
     <section class="company">
         <label for="company"><h2>Société</h2></label>
-        <input type="text" name="company" id="company" value="">
-
-        <!-- <select name="company" id="company">
-        <option selected value="Select company">Selectionez une société</option> -->
-        <!-- <option value="<?php echo $company['name']; ?>"><?php echo $company['name'];?></option> -->  
+        <select class="custom-select" name="company" id="company" required>
+            <option selected value="Selectionnez your company">Selectionnez la société</option>
+            <?php
+                foreach($companyList as $company){
+            ?>
+                 <option value="<?php echo $company['company_id']; ?>"><?php echo $company['name'];?></option>
+            <?php
+                }
+            ?>
         </select>
     </section>
-    <br><br>
+    <br>
     <section class="submit">
     <button type="submit" value="submit" id="submit" name="submit">Submit</button>
     </section>
