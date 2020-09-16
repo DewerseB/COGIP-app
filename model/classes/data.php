@@ -70,7 +70,16 @@ class Data
                         }
                         break;
                     case "contacts":
-                        $getData =  $pdo->prepare("SELECT invoices.invoice_id, invoices.invoice_number, invoices.date, contacts.firstname, contacts.phone , contacts.email,companies.name ,contacts.lastname FROM invoices INNER JOIN companies ON invoices.company_id = companies.company_id INNER JOIN contacts ON invoices.contact_id = contacts.contact_id where contacts.contact_id = $id");
+
+                        $checkInvoiceSQL = $pdo->prepare("SELECT invoice_id, invoice_number, date from invoices where contact_id = $id");
+                        $checkInvoiceSQL->execute();
+                        $checkInvoiceData = $checkInvoiceSQL->fetchAll(PDO::FETCH_ASSOC);
+
+                        if ($checkInvoiceData) {
+                            $getData =  $pdo->prepare("SELECT invoices.invoice_id, invoices.invoice_number, invoices.date, contacts.firstname, contacts.phone , contacts.email,companies.name ,contacts.lastname FROM invoices INNER JOIN companies ON invoices.company_id = companies.company_id INNER JOIN contacts ON invoices.contact_id = contacts.contact_id where contacts.contact_id = $id");
+                        } else {
+                            $getData =  $pdo->prepare("SELECT firstname,lastname, phone , email FROM contacts where contact_id = $id");
+                        }
                         break;
                 }
 
