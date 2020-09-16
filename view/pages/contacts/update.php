@@ -1,7 +1,6 @@
 <?php
     $contactInfo = $model->data[0];
     $companyList = $model->data[1][1];
-    var_dump($companyList);
 ?>
 
 <h1>Modifier le contact :</h1>

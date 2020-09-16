@@ -1,7 +1,7 @@
 <?php
     $companyList = $model->data[1];
-    var_dump($companyList);
-    ?>
+?>
+
 <h1>Ajout nouveau contact</h1>
 
 <form class="contactForm" action="" method="post">

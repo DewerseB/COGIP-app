@@ -1,20 +1,19 @@
-<h1>Modifier la société</h1>
 <?php
     require('./model/db/countries.php');//fetch the variable $countries from countries.php
-    $companyInfo = $model->data[0];
-    var_dump($companyInfo);
-    var_dump($_POST);
+    $companyInfo = $model->data[0][0];
 ?>
+
+<h1>Modifier la société</h1>
 
 <form class="formContent" action="" method="post">
     <section class="form">
         <label for="name"><h2>Nom de la société</h2></label>
-        <input type="text" name="name" id="name" value="<?php echo $companyInfo[0]['name'] ?>">
+        <input type="text" name="name" id="name" value="<?php echo $companyInfo['name'] ?>">
     </section>
 
     <section class="form">
         <label for="tva"><h2>N° de TVA</h2></label>
-        <input type="text" name="tva" id="tva" value="<?php echo $companyInfo[0]['VAT'] ?>">
+        <input type="text" name="tva" id="tva" value="<?php echo $companyInfo['VAT'] ?>">
     </section>
 
     <section class="form">
@@ -23,7 +22,7 @@
             <?php
                 foreach($countries as $country){
             ?>
-                 <option value="<?php echo strtolower($country); ?>"<?php echo (strtolower($country) == strtolower($companyInfo[0]['country']))? "selected":""?>><?php echo $country;?></option>
+                 <option value="<?php echo strtolower($country); ?>"<?php echo (strtolower($country) == strtolower($companyInfo['country']))? "selected":""?>><?php echo $country;?></option>
             <?php
                 }
             ?>

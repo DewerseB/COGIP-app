@@ -14,15 +14,13 @@
     <table>
         <th>Numéro de facture</th>
         <th>Date</th>
-    <?php
-     for ($i=0; $i < count($datas); $i++) {    
-        echo "<tr>";
-            echo "<td>".$datas[$i]['invoice_number']."</td>";
-            echo "<td>".$datas[$i]['date']."</td>";
-        echo "</tr>";
-     }
-    ?>
-</table> 
-
-
+        <?php
+        for ($i=0; $i < count($datas); $i++) {    
+            echo "<tr>";
+                echo "<td>".$datas[$i]['invoice_number']."</td>";
+                echo "<td>".$datas[$i]['date']."</td>";
+            echo "</tr>";
+        }
+        ?>
+    </table> 
 </section>

@@ -1,9 +1,7 @@
 <?php
     $contactList = $model->data[0];
     $companyList = $model->data[1];
-    // var_dump($contactList);
-    var_dump($companyList);
-    ?>
+?>
 
 <h1>Ajout nouvelle facture</h1>
 

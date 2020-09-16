@@ -2,9 +2,8 @@
     $invoiceInfo = $model->data[0];
     $contactList = $model->data[1][0];
     $companyList = $model->data[1][1];
-
-    // var_dump($companyList)
  ?>
+ 
 <h1>Modifier la facture :</h1>
 
 <form class="invoiceForm" action="" method="post">
