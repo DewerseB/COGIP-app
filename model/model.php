@@ -182,7 +182,9 @@ class Model
                             $data = Data::read($dataPath[0], 'list');
                         }
                     } else {
-                        $data = Data::read($dataPath[0], 'details', 1, $dataPath[2]);
+                        $data0 = Data::read($dataPath[0], 'details', 1, $dataPath[2]);
+                        $data1 = Data::read($dataPath[0], $dataPath[1]);
+                        array_push($data, $data0, $data1);
                     }
                 }
                 break;
