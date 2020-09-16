@@ -1,8 +1,10 @@
-<h1>COGIP : Annuaire des sociétés <?php
+<h1>COGIP : Annuaire des sociétés 
+    <?php
     if (Auth::isLogged()) {
         echo '<a href="/COGIP-app/companies/add"><button class="manage" title="Ajouter une société"><i class="fas fa-plus-square"></i></button></a>';
     }
-?></h1>
+    ?>
+</h1>
 <table>
     <th>ID</th>
     <th>Nom</th>
@@ -26,7 +28,6 @@
                 echo "<a href = \"/COGIP-app/companies/delete/$company[company_id]\"><button class='manage' title='Supprimer' onclick='return confirm(\"Voulez-vous vraiment supprimer la société ?\")'><i class='fas fa-minus-square'></i></button><a>";
             }
             echo "</td></tr>";
-
        }
     ?>
 </table>   
