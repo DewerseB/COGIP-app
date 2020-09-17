@@ -31,6 +31,10 @@ a {
     text-decoration: none;
 }
 
+p {
+    text-align: center;
+}
+
 div.nav-add {
     display: flex;
     justify-content: space-evenly;

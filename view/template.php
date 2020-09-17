@@ -16,7 +16,7 @@
     <?php require './view/header.php'; ?>
     <main>
         <?php
-        echo $model->message;
+        echo '<p>' . $model->message . '</p>';
         require './view/pages/' . $model->viewPath;
         ?>
     </main>
