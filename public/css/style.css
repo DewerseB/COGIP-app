@@ -10,7 +10,7 @@ main {
 body {
     height: 100%;
     margin: 0;
-    padding: 0;
+    padding: 2rem 0;
 }
 
 header,
@@ -23,36 +23,20 @@ footer {
     background-color: #c0c0c0;
 }
 
+footer {
+    height: 3rem;
+}
+
 a {
     text-decoration: none;
 }
 
-.formContent {
-    width: 100%;
-    max-width: 40rem;
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    background-color: #c0c0c0;
-    margin: auto;
-}
-
-div.form {
-    display: flex;
-    flex-direction: column;
-    padding: 0.5rem;
-}
-
-input {
-    height: 1rem;
-}
-
-div.nav {
-    width: 30%;
+div.nav-add {
     display: flex;
     justify-content: space-evenly;
-    padding-left: auto;
 }
+
+/* Buttons style */
 
 button {
     display: inline-block;
@@ -65,20 +49,19 @@ button {
     font-size: 1rem;
     cursor: pointer;
     text-align: center;
-    transition: background 400ms ease-in-out, color 400ms ease-in-out,
-        transform 400ms ease;
+    transition: background 400ms ease-in-out, color 400ms ease-in-out, transform 400ms ease;
     -webkit-appearance: none;
     -moz-appearance: none;
 }
 
-button.nav {
+button.navBtn {
     font-size: 1.1rem;
     text-align: center;
     /* background: rgb(150, 200, 250); */
 }
 
-button.nav:hover,
-button.nav:focus {
+button.navBtn:hover,
+button.navBtn:focus {
     background: rgb(50, 100, 150);
     color: #ffffff;
 }
@@ -115,31 +98,9 @@ h1 {
     padding-bottom: 20px;
 }
 
-h2 {
-    text-align: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
 .navbar-nav {
     flex-direction: row;
-    float: left;
-}
-
-.nav-link {
-    float: left;
-}
-
-nav {
-    text-align: center;
-    justify-content: center;
-}
-
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 50px;
+    float: right;
 }
 
 .contactDetails {
