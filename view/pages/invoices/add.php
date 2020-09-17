@@ -37,7 +37,7 @@
             <?php
                 foreach($contactList as $contact){
             ?>
-                 <option data-id="<?php echo $contact['contact_id']; ?>" value="<?php echo $contact['contact_id']; ?>"><?php echo $contact['lastname']. " ". $contact['firstname'];?></option>
+                 <option data-id="<?php echo $contact['company_id']; ?>" value="<?php echo $contact['contact_id']; ?>"><?php echo $contact['lastname']. " ". $contact['firstname'];?></option>
             <?php
                 }
             ?>
