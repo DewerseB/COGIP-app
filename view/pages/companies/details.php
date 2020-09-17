@@ -16,8 +16,8 @@
     
     <!-- display contacts info related to this company -->
         <section class="contactCompanyDetails">
-            <h2>Personnes de contact</h2>
-            <table>
+            <h2 id="edit">Personnes de contact</h2>
+            <table class="contactCompanyDetails">
                 <th>Nom</th>
                 <th>Téléphone</th>
                 <th>Email</th>
@@ -39,8 +39,8 @@
 
         <!-- display invoices info related to this company -->
         <section class="invoiceCompanyDetails">
-            <h2>Factures</h2>
-            <table>
+            <h2 id="edit">Factures</h2>
+            <table class="contactCompanyDetails">
                 <th>Numéro de facture</th>
                 <th>Date</th>
                 <th>Contact</th>
@@ -58,4 +58,3 @@
 <?php
     }
 ?>
-

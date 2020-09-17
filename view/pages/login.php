@@ -1,5 +1,5 @@
 <h1>Bienvenue à la COGIP</h1>
-<p id="pLog">Bienvenue dans l'espace de connexion de la COGIP</p>
+<p>Bienvenue dans l'espace de connexion de la COGIP</p>
 <form class="container" action="index.php" method="POST">
 	<div class="form-group">
 		<label for="username">Votre identifiant</label>
