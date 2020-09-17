@@ -17,9 +17,7 @@
        
             <h2>Dernières factures:</h2>
 
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
             <table>
                 <th>ID</th>
                 <th>Numéro de facture</th>
@@ -46,17 +44,13 @@
                 }
                 ?>
             </table> 
-        </div>
-    </div>
-</div>
+        
 
 
 
 <h2>Dernières sociétés:</h2>
 
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
             <table>
                 <th>ID</th>
                 <th>Nom</th>
@@ -83,18 +77,14 @@
                 }
                 ?>
             </table>
-        </div>
-    </div>
-</div>
+   
 
 
 
 
 <h2>Derniers contacts:</h2>
 
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
             <table>
                 <th>ID</th>
                 <th>Prénom</th>
@@ -123,7 +113,4 @@
                 }
                 ?>
             </table>
-        </div>
-    </div>
-</div>
-   
+  

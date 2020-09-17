@@ -3,6 +3,14 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    margin-top: 100px;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 header,
@@ -12,6 +20,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #c0c0c0;
 }
 
 a {
@@ -24,7 +33,8 @@ a {
     display: flex;
     flex-direction: column;
     padding: 2rem;
-    background-color: rgb(215, 235, 255);
+    background-color: #c0c0c0;
+    margin: auto;
 }
 
 div.form {
@@ -63,6 +73,7 @@ button {
 
 button.nav {
     font-size: 1.1rem;
+    text-align: center;
     /* background: rgb(150, 200, 250); */
 }
 
@@ -95,41 +106,43 @@ button:active {
 }
 
 /* affichage des données */
-/* partie maxendre css */
+
 table {
     border-collapse: collapse;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(215, 235, 255);
+    margin-bottom: 70px;
+    /* background-color: rgb(215, 235, 255); */
+    /* border: 1px solid black; */
 }
 
-tbody {
-    background-color: rgb(215, 235, 255);
-}
+/* tbody {
+     background-color: rgb(215, 235, 255); 
+} */
 
 th,
 td {
     border: 1px solid black;
     padding: 10px;
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
 }
 
 h1 {
     text-align: center;
+
+    padding-bottom: 20px;
 }
 
 h2 {
     text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .navbar-nav {
     flex-direction: row;
+    float: left;
 }
 
 .nav-link {
@@ -139,4 +152,19 @@ h2 {
 nav {
     text-align: center;
     justify-content: center;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+}
+
+.contactDetails {
+    text-align: center;
+}
+
+#pLog {
+    text-align: center;
 }
