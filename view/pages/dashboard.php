@@ -6,10 +6,10 @@
 
 <?php
     if (Auth::isLogged()) {
-        echo '<div class="nav">';
-        echo '<a href="/COGIP-app/invoices/add"><button class="nav">+ Nouvelle facture</button></a>';
-        echo '<a href="/COGIP-app/companies/add"><button class="nav">+ Nouvelle société</button></a>';
-        echo '<a href="/COGIP-app/contacts/add"><button class="nav">+ Nouveau contact</button></a>';
+        echo '<div class="nav-add">';
+        echo '<a href="/COGIP-app/invoices/add"><button class="navBtn">+ Nouvelle facture</button></a>';
+        echo '<a href="/COGIP-app/companies/add"><button class="navBtn">+ Nouvelle société</button></a>';
+        echo '<a href="/COGIP-app/contacts/add"><button class="navBtn">+ Nouveau contact</button></a>';
         echo '</div>';
     }
 ?>

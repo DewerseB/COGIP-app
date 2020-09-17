@@ -5,20 +5,20 @@
 
 <h1>Ajout nouvelle facture</h1>
 
-<form class="invoiceForm" action="" method="post">
-    <section class="invoice_number">
-        <label for="invoice_number"><h2>Numéro de facture</h2></label>
-        <input type="text" name="invoice_number" id="invoice_number" value="">
-    </section>
+<form class="container" action="" method="post">
+    <div class="form-group">
+        <label for="invoice_number">Numéro de facture</label>
+        <input class="form-control" type="text" name="invoice_number" id="invoice_number" value="">
+    </div>
 
-    <section class="date">
-        <label for="date"><h2>Date</h2></label>
-        <input type="date" name="date" id="date" value="">
-    </section>
+    <div class="form-group">
+        <label for="date">Date</label>
+        <input class="form-control" type="date" name="date" id="date" value="">
+    </div>
 
-    <section class="company">
-        <label for="company"><h2>Société</h2></label>
-        <select class="company_select" name="company" id="company_select" required onchange="giveSelection(this.value)">
+    <div class="form-group">
+        <label for="company">Société</label>
+        <select class="form-control" name="company" id="company_select" required onchange="giveSelection(this.value)">
             <option selected value="Selectionnez your company">Selectionnez la société</option>
             <?php
                 foreach($companyList as $company){
@@ -28,11 +28,11 @@
                 }
             ?>
         </select>    
-    </section>
+    </div>
 
-    <section class="contact">
-        <label for="contact"><h2>Personne de contact pour la facture</h2></label>
-        <select class="contact_select" name="contact" id="contact_select" required>
+    <div class="form-group">
+        <label for="contact">Personne de contact pour la facture</label>
+        <select class="form-control" name="contact" id="contact_select" required>
             <option selected value="Selectionnez your contact">Selectionnez le contact</option>
             <?php
                 foreach($contactList as $contact){
@@ -42,9 +42,9 @@
                 }
             ?>
         </select>
-    </section>
+    </div>
 
-    <section class="submit">
-        <button type="submit" value="submit" id="submit" name="submit">Submit</button>
-    </section>
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit" value="submit" id="submit" name="submit">Submit</button>
+    </div>
 </form>
