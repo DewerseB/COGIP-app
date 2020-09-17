@@ -5,26 +5,26 @@
 
 <h1>Modifier le contact :</h1>
 
-<form class="contactForm" action="" method="post">
-    <section class="firstname">
-        <label for="firstname"><h2>Prénom</h2></label>
-        <input type="text" name="firstname" id="firstname" value="<?php echo $contactInfo['firstname'] ?>">
-    </section>
-    <section class="lastname">
-        <label for="lastname"><h2>Nom</h2></label>
-        <input type="text" name="lastname" id="lastname" value="<?php echo $contactInfo['lastname'] ?>">
-    </section>
-    <section class="phone">
-        <label for="phone"><h2>Téléphone</h2></label>
-        <input type="text" name="phone" id="phone" value="<?php echo $contactInfo['phone'] ?>">
-    </section>
-    <section class="email">
-        <label for="email"><h2>Email</h2></label>
-        <input type="email" name="email" id="email" value="<?php echo $contactInfo['email'] ?>">
-    </section>
-    <section class="company">
-        <label for="company"><h2>Société</h2></label>
-        <select class="custom-select" name="company" id="company" required>
+<form class="container" action="" method="post">
+    <div class="form-group">
+        <label for="firstname">Prénom</label>
+        <input class="form-control" type="text" name="firstname" id="firstname" value="<?php echo $contactInfo['firstname'] ?>">
+    </div>
+    <div class="form-group">
+        <label for="lastname">Nom</label>
+        <input class="form-control" type="text" name="lastname" id="lastname" value="<?php echo $contactInfo['lastname'] ?>">
+    </div>
+    <div class="form-group">
+        <label for="phone">Téléphone</label>
+        <input class="form-control" type="text" name="phone" id="phone" value="<?php echo $contactInfo['phone'] ?>">
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input class="form-control" type="email" name="email" id="email" value="<?php echo $contactInfo['email'] ?>">
+    </div>
+    <div class="form-group">
+        <label for="company">Société</label>
+        <select class="form-control" name="company" id="company" required>
             <?php
                 foreach($companyList as $company){
             ?>
@@ -36,9 +36,8 @@
                 }
             ?>
         </select>
-    </section>
-    <br>
-    <section class="submit">
-    <button type="submit" value="submit" id="submit" name="submit">Submit</button>
-    </section>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit" value="submit" id="submit" name="submit">Submit</button>
+    </div>
 </form>
