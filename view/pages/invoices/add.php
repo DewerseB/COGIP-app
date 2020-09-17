@@ -18,7 +18,7 @@
 
     <section class="company">
         <label for="company"><h2>Société</h2></label>
-        <select class="custom-select" name="company" id="company" required>
+        <select class="company_select" name="company" id="company_select" required onchange="giveSelection(this.value)">
             <option selected value="Selectionnez your company">Selectionnez la société</option>
             <?php
                 foreach($companyList as $company){
@@ -32,12 +32,12 @@
 
     <section class="contact">
         <label for="contact"><h2>Personne de contact pour la facture</h2></label>
-        <select class="custom-select" name="contact" id="contact" required>
+        <select class="contact_select" name="contact" id="contact_select" required>
             <option selected value="Selectionnez your contact">Selectionnez le contact</option>
             <?php
                 foreach($contactList as $contact){
             ?>
-                 <option value="<?php echo $contact['contact_id']; ?>"><?php echo $contact['lastname']. " ". $contact['firstname'];?></option>
+                 <option data-id="<?php echo $contact['company_id']; ?>" value="<?php echo $contact['contact_id']; ?>"><?php echo $contact['lastname']. " ". $contact['firstname'];?></option>
             <?php
                 }
             ?>
