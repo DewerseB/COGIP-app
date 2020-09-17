@@ -3,7 +3,7 @@
         echo '<a href="/COGIP-app/contacts/add"><button class="manage" title="Ajouter un contact"><i class="fas fa-plus-square"></i></button></a>';
     }
 ?></h1>
-<table class="table">
+<table class="table table-striped table-hover">
     <thead>
         <tr>
             <th scope="col">ID</th>

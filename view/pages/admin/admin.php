@@ -1,5 +1,5 @@
 <h1>Gestion des utilisateurs</h1>
-<table class="table">
+<table class="table table-striped table-hover">
     <thead>
         <tr>
             <th scope="col">ID</th>
