@@ -23,29 +23,13 @@ footer {
     background-color: #c0c0c0;
 }
 
+footer {
+    height: 3rem;
+}
+
 a {
     text-decoration: none;
 }
-/* 
-.formContent {
-    width: 100%;
-    max-width: 40rem;
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    background-color: #c0c0c0;
-    margin: auto;
-}
-
-div.form {
-    display: flex;
-    flex-direction: column;
-    padding: 0.5rem;
-}
-
-input {
-    height: 2rem;
-} */
 
 div.nav-add {
     display: flex;
@@ -76,8 +60,8 @@ button.navBtn {
     /* background: rgb(150, 200, 250); */
 }
 
-button.nav:hover,
-button.nav:focus {
+button.navBtn:hover,
+button.navBtn:focus {
     background: rgb(50, 100, 150);
     color: #ffffff;
 }
@@ -114,31 +98,9 @@ h1 {
     padding-bottom: 20px;
 }
 
-h2 {
-    text-align: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
 .navbar-nav {
     flex-direction: row;
-    float: left;
-}
-
-.nav-link {
-    float: left;
-}
-
-nav {
-    text-align: center;
-    justify-content: center;
-}
-
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 50px;
+    float: right;
 }
 
 .contactDetails {
