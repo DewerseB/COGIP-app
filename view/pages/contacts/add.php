@@ -4,26 +4,26 @@
 
 <h1>Ajout nouveau contact</h1>
 
-<form class="contactForm" action="" method="post">
-    <section class="firstname">
-        <label for="firstname"><h2>Prénom</h2></label>
-        <input type="text" name="firstname" id="firstname" value="">
-    </section>
-    <section class="lastname">
-        <label for="lastname"><h2>Nom</h2></label>
-        <input type="text" name="lastname" id="lastname" value="">
-    </section>
-    <section class="phone">
-        <label for="phone"><h2>Téléphone</h2></label>
-        <input type="text" name="phone" id="phone" value="">
-    </section>
-    <section class="email">
-        <label for="email"><h2>Email</h2></label>
-        <input type="email" name="email" id="email" value="">
-    </section>
-    <section class="company">
-        <label for="company"><h2>Société</h2></label>
-        <select class="custom-select" name="company" id="company" required>
+<form class="container" action="" method="post">
+    <div class="form-group">
+        <label for="firstname">Prénom</label>
+        <input class="form-control" type="text" name="firstname" id="firstname" value="">
+    </div>
+    <div class="form-group">
+        <label for="lastname">Nom</label>
+        <input class="form-control" type="text" name="lastname" id="lastname" value="">
+    </div>
+    <div class="form-group">
+        <label for="phone">Téléphone</label>
+        <input class="form-control" type="text" name="phone" id="phone" value="">
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input class="form-control" type="email" name="email" id="email" value="">
+    </div>
+    <div class="form-group">
+        <label for="company">Société</label>
+        <select class="form-control" name="company" id="company" required>
             <option selected value="Selectionnez your company">Selectionnez la société</option>
             <?php
                 foreach($companyList as $company){
@@ -33,9 +33,8 @@
                 }
             ?>
         </select>
-    </section>
-    <br>
-    <section class="submit">
-    <button type="submit" value="submit" id="submit" name="submit">Submit</button>
-    </section>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit" value="submit" id="submit" name="submit">Submit</button>
+    </div>
 </form>
