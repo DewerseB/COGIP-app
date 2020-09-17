@@ -1,6 +1,7 @@
 <?php
     $invoicesList = $model->data;
     $contactInfo = $invoicesList[0];
+    
     ?>
 <h1>Contact : <?php echo $contactInfo['lastname']. " ". $contactInfo['firstname'] ?> </h1>
 
@@ -10,6 +11,8 @@
     <strong> Phone : </strong> <?php echo $contactInfo['phone']?> <br>
 </section>
 
+<!-- display more info if available -->
+<?php if (count($contactInfo)>5) {?>
 <section class="invoiceContactDétails">
     <h2>Contact pour les factures : </h2>
     <table>
@@ -25,3 +28,6 @@
         ?>
     </table> 
 </section>
+<?php
+}
+?>
