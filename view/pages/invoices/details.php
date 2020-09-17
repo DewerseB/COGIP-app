@@ -7,8 +7,8 @@
 </h1>
 
 <section class="companyInvoiceDetails">
-    <h2>Société liée à la facture</h2>
-    <table>
+    <h2 id="edit">Société liée à la facture</h2>
+    <table class ="companyInvoiceDetails">
         <th>Nom</th>
         <th>Numéro de TVA</th>
         <th>type</th>
@@ -23,8 +23,8 @@
 </section>
 
 <section class="contactInvoiceDetails">
-    <h2>Personne de contact</h2>
-    <table>
+    <h2 id="edit">Personne de contact</h2>
+    <table class ="companyInvoiceDetails">
         <th>Nom</th>
         <th>Email</th>
         <th>Téléphone</th>

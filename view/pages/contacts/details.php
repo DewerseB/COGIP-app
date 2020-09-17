@@ -14,8 +14,8 @@
 <!-- display more info if available -->
 <?php if (count($contactInfo)>5) {?>
 <section class="invoiceContactDétails">
-    <h2>Contact pour les factures : </h2>
-    <table>
+    <h2 id="edit">Contact pour les factures : </h2>
+    <table  class="invoiceContactDétails">
         <th>Numéro de facture</th>
         <th>Date</th>
         <?php
