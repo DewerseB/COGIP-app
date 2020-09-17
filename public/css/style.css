@@ -50,6 +50,26 @@ button.manage:focus {
     text-align: center;
 }
 
+/* Factures détails */
+.companyInvoiceDetails {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#edit {
+    text-align: center;
+}
+
+/* Sociétés détails */
+.contactCompanyDetails {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.companyDetails {
+    text-align: center;
+}
+
 /* Contact détails */
 .contactDetails {
     text-align: center;

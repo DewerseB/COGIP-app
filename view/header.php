@@ -1,4 +1,4 @@
-<header>
+<header class="fixed-top">
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark"> 
 
@@ -29,16 +29,15 @@
         </div> 
 
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2"> 
-            <ul class="navbar-nav ml-auto"> 
-                  <li class="nav-item"> 
-                    <?php
-                          if (Auth::isLogged()) {
-                              echo '<form action="" method="POST"><button class="nav" type="submit" name="submit" value="logout">Deconnexion</button></form>';
-                          } else {
-                              echo '<a href="/COGIP-app/login"><button class="nav" type="button">Connexion</button></a>';
-                          }
-                      ?>
-                  </li> 
+            <ul class="navbar-nav ml-auto">
+              <?php
+                if (Auth::isLogged()) {
+                    if ($_SESSION['usertype'] === 'admin') echo '<li class="nav-item"><a class="nav-link" href="/COGIP-app/admin/admin">Admin</a></li>';
+                    echo '<li class="nav-item"><form action="" method="POST"><button class="navBtn" type="submit" name="submit" value="logout">Deconnexion</button></form></li>';
+                } else {
+                    echo '<li class="nav-item"><a href="/COGIP-app/login"><button class="navBtn" type="button">Connexion</button></a></li>';
+                }
+              ?>
             </ul> 
 
         </div> 

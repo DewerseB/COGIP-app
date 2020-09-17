@@ -1,7 +1,7 @@
 <?php
     $invoicesList = $model->data;
     $contactInfo = $invoicesList[0];
-    
+
     ?>
 <h1>Contact : <?php echo $contactInfo['lastname']. " ". $contactInfo['firstname'] ?> </h1>
 
@@ -19,7 +19,7 @@
         <th>Numéro de facture</th>
         <th>Date</th>
         <?php
-        foreach ($invoicesList as $invoice) {    
+        foreach ($invoicesList as $invoice) {
             echo "<tr>";
                 echo "<td>".$invoice['invoice_number']."</td>";
                 echo "<td>".$invoice['date']."</td>";

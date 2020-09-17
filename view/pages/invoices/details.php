@@ -19,7 +19,7 @@
                 echo "<td>".$datas['company_type'].  "</td>";
             echo "</tr>";
         ?>
-    </table>   
+    </table>
 </section>
 
 <section class="contactInvoiceDetails">
@@ -35,6 +35,5 @@
             echo "<td>".$datas['phone'].  "</td>";
         echo "</tr>";
     ?>
-</table>   
-
+</table>
 </section>
