@@ -107,26 +107,7 @@ button:active {
 
 /* affichage des données */
 
-table {
-    border-collapse: collapse;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 70px;
-    /* background-color: rgb(215, 235, 255); */
-    /* border: 1px solid black; */
-}
 
-/* tbody {
-     background-color: rgb(215, 235, 255); 
-} */
-
-th,
-td {
-    border: 1px solid black;
-    padding: 10px;
-    text-align: center;
-}
 
 h1 {
     text-align: center;
