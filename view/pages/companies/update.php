@@ -5,20 +5,20 @@
 
 <h1>Modifier la société</h1>
 
-<form class="formContent" action="" method="post">
-    <section class="form">
-        <label for="name"><h2>Nom de la société</h2></label>
-        <input type="text" name="name" id="name" value="<?php echo $companyInfo['name'] ?>">
-    </section>
+<form class="container" action="" method="post">
+    <div class="form-group">
+        <label for="name">Nom de la société</label>
+        <input class="form-control" type="text" name="name" id="name" value="<?php echo $companyInfo['name'] ?>">
+    </div>
 
-    <section class="form">
-        <label for="tva"><h2>N° de TVA</h2></label>
-        <input type="text" name="tva" id="tva" value="<?php echo $companyInfo['VAT'] ?>">
-    </section>
+    <div class="form-group">
+        <label for="tva">N° de TVA</label>
+        <input class="form-control" type="text" name="tva" id="tva" value="<?php echo $companyInfo['VAT'] ?>">
+    </div>
 
-    <section class="form">
-        <label for="country"><h2>Pays</h2></label>
-        <select class="custom-select" name="country" id="country" required>
+    <div class="form-group">
+        <label for="country">Pays</label>
+        <select class="form-control" name="country" id="country" required>
             <?php
                 foreach($countries as $country){
             ?>
@@ -27,18 +27,18 @@
                 }
             ?>
         </select>
-    </section>
+    </div>
 
-    <section class="form">
-        <label for="company_type"><h2>Type de société</h2></label>
-        <select name="company_type" id="company_type">
+    <div class="form-group">
+        <label for="company_type">Type de société</label>
+        <select class="form-control" name="company_type" id="company_type">
             <option value="1">Client</option>
             <option value="2">Fournisseur</option>
         </select>
-    </section>
+    </div>
     
-    <section class="form">
-        <button type="submit" value="submit" id="submit" name="submit">Submit</button>
-    </section>
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit" value="submit" id="submit" name="submit">Submit</button>
+    </div>
 
 </form>
