@@ -8,27 +8,17 @@
 
         public static function login($username, $password) {
 
-            require './model/config/sql-auth.php';
+            $response = Auth::read($username);
 
-            $selectPass = 'SELECT users.password, usertypes.usertype FROM users INNER JOIN usertypes ON users.usertype_id = usertypes.usertype_id AND username = ?';
-            $prepPassReq = $pdo->prepare($selectPass);
-            $prepPassReq->execute([$username]);
-
-            if ($prepPassReq) {
-                $response = $prepPassReq->fetch();
-                $prepPassReq = NULL;
-                if ($response) {
-                    if (password_verify($password, $response['password'])) {
-                        $_SESSION['username'] = $username;
-                        $_SESSION['usertype'] = $response['usertype'];
-                    } else {
-                        throw new Exception("Mot de passe invalide");
-                    }
+            if ($response) {
+                if (password_verify($password, $response[0]['password'])) {
+                    $_SESSION['username'] = $response[0]['username'];
+                    $_SESSION['usertype'] = $response[0]['usertype'];
                 } else {
-                    throw new Exception("Nom d'utilisateur invalide");
+                    throw new Exception("Mot de passe invalide");
                 }
             } else {
-                $prepPassReq = NULL;
+                throw new Exception("Nom d'utilisateur invalide");
             }
         }
 
@@ -39,4 +29,44 @@
             session_start();
         }
 
+        public static function getUsers() {
+
+            $response = Auth::read();
+
+            if ($response) {
+                return $response;
+            } else {
+                throw new Exception("Aucun utilisateur dans la base de données");
+            }
+        }
+
+        private static function read($username = FALSE) {
+
+            require './model/config/sql-auth.php';
+
+            $selectUsers = 'SELECT users.id, users.username, users.password, usertypes.usertype FROM users INNER JOIN usertypes ON users.usertype_id = usertypes.usertype_id';
+            if ($username) {
+                $selectUsers .= ' AND username = ?';
+            } else {
+                $selectUsers .= ' AND FALSE = ?';
+            }
+            $prepUserReq = $pdo->prepare($selectUsers);
+            $prepUserReq->execute([$username]);
+
+            if ($prepUserReq) {
+                $response = $prepUserReq->fetchAll(PDO::FETCH_ASSOC);
+                $prepUserReq = NULL;
+                return $response;
+            } else {
+                $prepUserReq = NULL;
+                throw new Exception("Impossible de se connecter à la base de données");
+            }
+        }
+
+        public static function update() {
+
+            require './model/config/sql-auth.php';
+
+
+        }
     }

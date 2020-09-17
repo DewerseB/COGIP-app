@@ -98,6 +98,12 @@ class Model
                             $data = Data::read($dataPath[0], 'list');
                         }
                     }
+                } elseif ($dataPath[1] === 'admin') {
+                    try {
+                        $data = Auth::getUsers();
+                    } catch (Exception $e) {
+                        $this->message = $e->getMessage();
+                    }
                 }
                 break;
             case 3:
