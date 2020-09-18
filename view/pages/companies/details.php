@@ -16,7 +16,7 @@
 <?php if (count($companyInfo)>5) {?>
 
     <!-- display contacts info related to this company -->
-        <section class="contactCompanyDetails">
+        <section class="table contactCompanyDetails">
             <h2 id="edit">Personnes de contact</h2>
             <table class="contactCompanyDetails">
                 <th>Nom</th>
@@ -40,9 +40,9 @@
 <?php
     }
 ?>
-        <!-- display invoices info related to this company -->
+<!-- display invoices info related to this company -->
 <?php if (count($companyInfo)>10) {?>
-        <section class="invoiceCompanyDetails">
+        <section class="table invoiceCompanyDetails">
             <h2 id="edit">Factures</h2>
             <table class="contactCompanyDetails">
                 <th>Numéro de facture</th>

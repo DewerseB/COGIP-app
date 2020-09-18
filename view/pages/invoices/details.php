@@ -6,7 +6,7 @@
     Date: <?php echo $datas['date'] ?>
 </h1>
 
-<section class="companyInvoiceDetails">
+<section class="table companyInvoiceDetails">
     <h2 id="edit">Société liée à la facture</h2>
     <table class ="companyInvoiceDetails">
         <th>Nom</th>
@@ -22,7 +22,7 @@
     </table>
 </section>
 
-<section class="contactInvoiceDetails">
+<section class="table contactInvoiceDetails">
     <h2 id="edit">Personne de contact</h2>
     <table class ="companyInvoiceDetails">
         <th>Nom</th>

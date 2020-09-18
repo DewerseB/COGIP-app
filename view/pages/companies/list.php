@@ -12,7 +12,7 @@
             <th scope="col">Nom</th>
             <th scope="col">Numéro de TVA</th>
             <th scope="col">Pays</th>
-            <th scope="col">type</th>
+            <th scope="col">Type</th>
             <th scope="col">Gérer</th>
         </tr>
     </thead>
