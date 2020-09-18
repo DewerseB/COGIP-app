@@ -12,8 +12,9 @@
 </section>
 
 <!-- display more info if available -->
+
 <?php if (count($companyInfo)>5) {?>
-    
+
     <!-- display contacts info related to this company -->
         <section class="contactCompanyDetails">
             <h2 id="edit">Personnes de contact</h2>
@@ -36,8 +37,11 @@
                 ?>
             </table>   
         </section>
-
+<?php
+    }
+?>
         <!-- display invoices info related to this company -->
+<?php if (count($companyInfo)>10) {?>
         <section class="invoiceCompanyDetails">
             <h2 id="edit">Factures</h2>
             <table class="contactCompanyDetails">
