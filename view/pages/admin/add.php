@@ -12,14 +12,14 @@
     <section class="row">
         <article class="col-xl-6">
             <div class="form-group">
-                <label for="pasword">Mot de passe</label>
-                 <input class="form-control" type="password" name="password" id="password" value="">
+                <label for="pass1">Mot de passe</label>
+                 <input class="form-control" type="password" name="pass1" id="pass1" value="">
             </div>
         </article>
         <article class="col-xl-6">
             <div class="form-group">
-                <label for="confirm">Confirmer le mot de passe</label>
-                <input class="form-control" type="confirm" name="confirm" id="confirm" value="">
+                <label for="pass2">Confirmez le mot de passe</label>
+                <input class="form-control" type="password" name="pass2" id="pass2" value="">
             </div>
         </article>
     </section>
