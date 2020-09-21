@@ -1,4 +1,10 @@
-<h1>Gestion des utilisateurs</h1>
+<h1>Gestion des utilisateurs
+<?php
+    if (Auth::isLogged()) {
+        echo '<a href="/COGIP-app/admin/add"><button class="manage" title="Ajouter un utilisateur"><i class="fas fa-plus-square"></i></button></a>';
+    }
+    ?>
+</h1>
 <table class="table table-striped table-hover">
     <thead>
         <tr>
