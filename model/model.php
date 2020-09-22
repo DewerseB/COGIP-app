@@ -110,7 +110,7 @@ class Model
                 if ($dataPath[1] === 'details') {
                     try {
                         $data = Data::read($dataPath[0], $dataPath[1], 0, $dataPath[2]); // table/action/id
-                       
+
                     } catch (Exception $e) {
                         $this->message = $e->getMessage();
                         $this->path = $dataPath[0] . '/list';
@@ -130,6 +130,10 @@ class Model
                             case 'contacts':
                                 $primaryKey = 'contact_id';
                                 $this->message = "Contact supprimé";
+                                break;
+                            case 'admin':
+                                $primaryKey = 'id';
+                                $this->message = "utilisateur supprimé";
                                 break;
                         }
                         Data::delete($dataPath[0], $dataPath[2], $primaryKey);
@@ -160,7 +164,6 @@ class Model
                                     $primaryKey = 'id';
                                     $this->message = "utilisateur modifié";
                                     break;
-                                
                             }
                             Data::update($dataPath[0], $dataPath[2], $primaryKey);
                             $this->path = $dataPath[0] . '/list';
@@ -171,9 +174,14 @@ class Model
                             $data = Data::read($dataPath[0], 'list');
                         }
                     } else {
-                        $data0 = Data::read($dataPath[0], 'details', 1, $dataPath[2]);
-                        $data1 = Data::read($dataPath[0], $dataPath[1]);
-                        array_push($data, $data0, $data1);
+
+                        if ($dataPath[0] === "admin") {
+                            $data = Data::read($dataPath[0], 'details', 1, $dataPath[2]);
+                        } else {
+                            $data0 = Data::read($dataPath[0], 'details', 1, $dataPath[2]);
+                            $data1 = Data::read($dataPath[0], $dataPath[1]);
+                            array_push($data, $data0, $data1);
+                        }
                     }
                 }
                 break;
@@ -183,6 +191,5 @@ class Model
         }
 
         return $data;
-
     }
 }

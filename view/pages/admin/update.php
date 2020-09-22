@@ -1,5 +1,5 @@
 <?php
-    $usersInfo = $model->data;
+    $usersInfo = $model->data[0];
     var_dump($usersInfo);
 ?>
 
