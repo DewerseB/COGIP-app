@@ -32,7 +32,7 @@
             <ul class="navbar-nav ml-auto">
               <?php
                 if (Auth::isLogged()) {
-                    if ($_SESSION['usertype'] === 'admin') echo '<li class="nav-item"><a class="nav-link" href="/COGIP-app/admin/admin">Admin</a></li>';
+                    if ($_SESSION['usertype'] === 'admin') echo '<li class="nav-item"><a class="nav-link" href="/COGIP-app/admin/list">Admin</a></li>';
                     echo '<li class="nav-item"><form action="" method="POST"><button class="navBtn" type="submit" name="submit" value="logout">Deconnexion</button></form></li>';
                 } else {
                     echo '<li class="nav-item"><a href="/COGIP-app/login"><button class="navBtn" type="button">Connexion</button></a></li>';

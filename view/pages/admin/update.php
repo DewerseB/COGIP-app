@@ -18,7 +18,7 @@
         </article>
         <article class="col-xl-6">
             <div class="form-group">
-                <label for="pass2">Confirmer le mot de passe</label>
+                <label for="pass2">Confirmez le mot de passe</label>
                 <input class="form-control" type="password" name="pass2" id="pass2" value="">
             </div>
         </article>

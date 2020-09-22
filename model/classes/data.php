@@ -34,6 +34,15 @@ class Data
                     case "contacts":
                         $getData = ($limit > 0) ? $pdo->prepare("SELECT contacts.contact_id, contacts.lastname, contacts.firstname, contacts.email, contacts.phone, companies.name FROM contacts INNER JOIN companies ON contacts.company_id = companies.company_id ORDER BY contacts.contact_id DESC LIMIT $limit") : $pdo->prepare("SELECT  contacts.contact_id,contacts.lastname, contacts.firstname, contacts.email, contacts.phone, companies.name FROM contacts INNER JOIN companies ON contacts.company_id = companies.company_id ORDER BY contacts.lastname");
                         break;
+
+                    case "admin":
+
+                        require './model/config/sql-auth.php';
+                        $getData =  $pdo->prepare("SELECT users.id ,users.username, usertypes.usertype from users INNER JOIN usertypes ON usertypes.usertype_id = users.usertype_id");
+
+
+
+                        break;
                 }
 
                 $getData->execute();
@@ -98,6 +107,7 @@ class Data
     public static function create($table)
     {
         require './model/config/sql-data.php';
+
         switch ($table) {
             case "invoices":
                 $sql = $pdo->prepare("INSERT INTO $table ( `invoice_number`, `date`, `contact_id`, `company_id`) VALUES (?,?,?,?)");
@@ -120,6 +130,13 @@ class Data
                 $sql->bindParam(3, $_POST['email']);
                 $sql->bindParam(4, $_POST['phone']);
                 $sql->bindParam(5, $_POST['company']);
+                break;
+            case "admin":
+                require './model/config/sql-auth.php';
+                $sql = $pdo->prepare("INSERT INTO `users`(`username`, `password`, `usertype_id`)  VALUES (?,?,?)");
+                $sql->bindParam(1, $_POST['username']);
+                $sql->bindParam(2, $_POST['pass1']);
+                $sql->bindParam(3, $_POST['usertype_id']);
                 break;
         }
 
