@@ -1,3 +1,8 @@
+<?php
+    $usersInfo = $model->data;
+    var_dump($usersInfo);
+?>
+
 <h1>Modifier l'utilisateur</h1>
 
 <form class="container" action="" method="post">
@@ -5,7 +10,7 @@
     <!-- username -->
     <section class="form-group">
         <label for="username">Nom de l'utilisateur</label>
-        <input class="form-control" type="text" name="username" id="username" value="">
+        <input class="form-control" type="text" name="username" id="username" value="<?= $usersInfo['username']?>">
     </section>
 
     <!-- password -->
@@ -13,9 +18,10 @@
         <article class="col-xl-6">
             <div class="form-group">
                 <label for="pass1">Mot de passe</label>
-                 <input class="form-control" type="password" name="pass1" id="pass1" value="">
+                 <input class="form-control" type="password" name="pass1" id="pass1" value="<?= $usersInfo['password']?>">
             </div>
         </article>
+         
         <article class="col-xl-6">
             <div class="form-group">
                 <label for="pass2">Confirmez le mot de passe</label>

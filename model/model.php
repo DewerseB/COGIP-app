@@ -156,6 +156,11 @@ class Model
                                     $primaryKey = 'contact_id';
                                     $this->message = "Contact modifié";
                                     break;
+                                case 'admin':
+                                    $primaryKey = 'id';
+                                    $this->message = "utilisateur modifié";
+                                    break;
+                                
                             }
                             Data::update($dataPath[0], $dataPath[2], $primaryKey);
                             $this->path = $dataPath[0] . '/list';

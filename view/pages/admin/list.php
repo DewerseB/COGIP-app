@@ -21,7 +21,7 @@
                 echo '<th scope="row">' . $user['id'] . '</th>';
                 echo "<td>" . $user['username'] . "</td>";
                 echo "<td>" . $user['usertype'] . "</td>";
-                echo "<td><a href = \"/COGIP-app/admin/details/$user[id]\"><button class='manage' title='Details'><i class='fas fa-external-link-square-alt'></i></button><a>";
+                echo "<td>";
                 echo "<a href = \"/COGIP-app/admin/update/$user[id]\"><button class='manage' title='Modifier'><i class='fas fa-pen-square'></i></button><a>";
                 echo "<a href = \"/COGIP-app/admin/delete/$user[id]\"><button class='manage' title='Supprimer' onclick='return confirm(\"Voulez-vous vraiment supprimer l\'utilisateur ?\")'><i class='fas fa-minus-square'></i></button><a>";
                 echo "</td></tr>";

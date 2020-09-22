@@ -9,17 +9,25 @@ class Data
         switch ($case) {
             case "add":
             case "update":
-                require './model/config/sql-data.php';
-                $getData = $pdo->prepare("SELECT contacts.contact_id,contacts.lastname, contacts.firstname, companies.name, companies.company_id FROM contacts INNER JOIN companies ON contacts.company_id = companies.company_id");
-                $getData->execute();
-                $data0 = $getData->fetchAll(PDO::FETCH_ASSOC);
-
-                $getData = $pdo->prepare("SELECT company_id,name from companies");
-                $getData->execute();
-                $data1 = $getData->fetchAll(PDO::FETCH_ASSOC);
-
-                array_push($data, $data0, $data1);
-                $getData = NULL;
+                if ($table == "admin") {
+                    require './model/config/sql-auth.php';
+                    $getData = $pdo->prepare("SELECT username, `password`, usertype_id FROM users");
+                    $getData->execute();
+                    $data = $getData->fetchAll(PDO::FETCH_ASSOC);
+                } else {
+                    require './model/config/sql-data.php';  
+                    $getData = $pdo->prepare("SELECT contacts.contact_id,contacts.lastname, contacts.firstname, companies.name, companies.company_id FROM contacts INNER JOIN companies ON contacts.company_id = companies.company_id");
+                    $getData->execute();
+                    $data0 = $getData->fetchAll(PDO::FETCH_ASSOC);
+    
+                    $getData = $pdo->prepare("SELECT company_id,name from companies");
+                    $getData->execute();
+                    $data1 = $getData->fetchAll(PDO::FETCH_ASSOC);
+    
+                    array_push($data, $data0, $data1);
+                    $getData = NULL;
+                } 
+                
                 break;
             case "list":
 
@@ -36,12 +44,8 @@ class Data
                         break;
 
                     case "admin":
-
                         require './model/config/sql-auth.php';
                         $getData =  $pdo->prepare("SELECT users.id ,users.username, usertypes.usertype from users INNER JOIN usertypes ON usertypes.usertype_id = users.usertype_id");
-
-
-
                         break;
                 }
 
@@ -90,7 +94,8 @@ class Data
                             $getData =  $pdo->prepare("SELECT firstname,lastname, phone , email , companies.name FROM contacts INNER JOIN companies ON contacts.company_id = companies.company_id  where contact_id = $id");
                         }
                         break;
-                }
+
+                    }   
 
                 $getData->execute();
                 $data = $getData->fetchAll(PDO::FETCH_ASSOC);
@@ -144,9 +149,12 @@ class Data
         $sql = NULL;
     }
 
-    public static function delete($table, $id, $primaryKey)
-    {
-        require './model/config/sql-data.php';
+    public static function delete($table, $id, $primaryKey){
+        if ($table == "admin") {
+            require './model/config/sql-auth.php';
+        } else {
+            require './model/config/sql-data.php';  
+        } 
         $delRow = "DELETE FROM $table WHERE $primaryKey = ?;";
         $prepDelReq = $pdo->prepare($delRow);
         //$prepDelReq->bindValue(1, $table, PDO::PARAM_STR);
@@ -189,6 +197,14 @@ class Data
                 $sql->bindParam(4, $_POST['phone']);
                 $sql->bindParam(5, $_POST['company']);
                 $sql->bindParam(6, $id);
+                break;
+            case "admin":
+                require './model/config/sql-auth.php';
+                $sql = $pdo->prepare("UPDATE `users` SET `username`=?, `password`=?, `usertype_id`=?)  WHERE  $primaryKey = ?");
+                $sql->bindParam(1, $_POST['username']);
+                $sql->bindParam(2, $_POST['pass1']);
+                $sql->bindParam(3, $_POST['usertype_id']);
+                $sql->bindParam(4, $id);
                 break;
         }
 
