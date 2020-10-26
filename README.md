@@ -1,16 +1,20 @@
 # COGIP-app
 
-## Liste des personnes ayant travaillé sur ce Challenge:
+## Démo
+
+Le résultat est visible à [cette adresse](https://calvin-jitnaree.alwaysdata.net/COGIP-app/).
+
+## Liste des personnes ayant travaillé sur ce Challenge
 
 -   **Bastien Dewerse**
 -   **Calvin Jitnaree**
 -   **Stéphane Kalonji**
 -   **Maxendre Martin**
 
-## Objectif :
+## Objectif
 
 -   Utilisation de différents paramètres URL et nom de fichier
--   Validation des donées
+-   Validation des données
 -   Construction d'une base de données relationnelle
 -   Utilisation de joins pour le SQL
 -   Mise en place d'un CRUD
