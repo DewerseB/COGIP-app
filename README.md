@@ -2,6 +2,7 @@
 
 ## Démo
 
+App de gestion de clients et factures pour une société imaginaire, la COGIP.
 Le résultat est visible à [cette adresse](https://calvin-jitnaree.alwaysdata.net/COGIP-app/).
 
 ## Liste des personnes ayant travaillé sur ce Challenge
